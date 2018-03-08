@@ -20,6 +20,7 @@ include '../includes/_headers.php'
                 <div class="panel panel-default">
 
                     <?php
+                    //here we check that the required values have been set in the post
                     $form = checkFormParams(array("uName", "uPass", "fName", "lName"));
                     if($form["cnt"] == 4){
                         // verify if the user does not exists
@@ -31,12 +32,13 @@ include '../includes/_headers.php'
                                 Oops, The User Already exists.
                             </div>";
                         } else {
-                            // Generate a random ID with co as prefix.
+                            // Generate a random ID with "co" as prefix.
                             $newID = getID("co");
                             echo $newID;
+                            //inserts values to the login table
                             insertFields("logininfo",
                                 array("UserName" => $form["uName"],
-                                    "Password" => $form["uPass"],
+                                    "Password" => password_hash($form["uPass"], PASSWORD_DEFAULT),
                                     "Role" => "coach",
                                     "code" => "test",
                                     "Active" => "No",
@@ -44,7 +46,7 @@ include '../includes/_headers.php'
                                     "StudentID" => NAN
                                 )
                             );
-
+                            //insert values to the coach table Note that we are using same coach id
                             insertFields("rwccoach",
                                 array(
                                     "CoachID" => $newID,
