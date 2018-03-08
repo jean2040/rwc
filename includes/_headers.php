@@ -1,6 +1,8 @@
 <?php
 include '../php/connection.php';
-$logID = $password = "";
+include '../php/functions.php';
+include '../php/dbInsert';
+include '../php/dbSelect.php';
 
 
 ?>
@@ -25,6 +27,8 @@ $logID = $password = "";
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- RWC Portal CSS -->
+    <link href="../dist/css/rwc_style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

@@ -4,11 +4,16 @@ $user = 'root';
 $pass = '';
 $db = "rwc";
 
-$conn = new mysqli($host,$user,$pass,$db);
+$connection = new mysqli($host,$user,$pass,$db);
 
-if ($conn->connect_error){
-    die("Connection Error". $conn->connect_error);
+if ($connection->connect_error){
+    die("Connection Error". $connection->connect_error);
 }
 
-
+// -- confirm query set
+function confirm_query($result_set) {
+    if (!$result_set) {
+        die("Database query failed.");
+    }
+}
 ?>
