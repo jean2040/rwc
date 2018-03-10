@@ -41,10 +41,29 @@
                 'copy', 'excel', 'pdf'
             ],
             });
-
+// this function will get  info form datadabe on click using ajax and then showing it to the modal
         $('#coaches tbody').on('click', 'tr', function () {
             var data = table.row( this ).data();
-            alert( 'You clicked on '+data[0]+'\'s row' );
+
+            $.ajax({
+                type: "POST",
+                url: "../php/getUser.php",
+                data: { user_id: data[0]},
+                dataType: "json",
+                success: function(data) {
+                    //and from data you can retrive your user details and show them in the modal
+                    $('#myModal').modal();
+                    $('#myModalLabel').text(data['Firstname']+""+data['Lastname']);
+                    $('#modal_email').text(data['Email']);
+                    $('#modal_gender').text(data['Gender']);
+                    $('#modal_phone').text(data['Phone']);
+                    $('#modal_level').text(data['Level']);
+                    $('#modal_language').text(data['LanguageSkill']);
+                    console.log(data);
+                }});
+
+
+            //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
     });
 </script>

@@ -23,7 +23,7 @@ $my_coaches = getAll('rwccoach', null,null,null);
             <div class="col-lg-12">
                 <div class="panel panel-green">
                     <div class="panel-heading">
-                        <h1>Coaches Reports</h1>
+                        <h1> <i class="fa fa-mortar-board fa-fw"></i> Coaches Reports</h1>
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -66,19 +66,40 @@ $my_coaches = getAll('rwccoach', null,null,null);
 
                         <!-- Modal Coach -->
 
-                        <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block; padding-right: 16px;">
+                        <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; padding-right: 16px;">
                             <div class="modal-dialog">
                                 <div class="modal-content">
+
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        <h4 class="modal-title" id="myModalLabel"></h4>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body" id="modalbody">
+                                        <div class="row">
+                                            <div class="col-sm-3">Email:</div>
+                                            <div class="col-sm-6" id="modal_email"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Phone:</div>
+                                            <div class="col-sm-6" id="modal_phone"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Level:</div>
+                                            <div class="col-sm-6" id="modal_level">3</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Gender:</div>
+                                            <div class="col-sm-6" id="modal_gender">3</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Language:</div>
+                                            <div class="col-sm-6" id="modal_language">3</div>
+                                        </div>
 
-                                    </div>
+                                        </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-warning">Edit</button>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
