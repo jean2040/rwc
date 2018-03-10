@@ -16,7 +16,7 @@ include '../includes/_headers.php'
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Register Student
@@ -26,13 +26,10 @@ include '../includes/_headers.php'
                             <div class="col-lg-6">
                                 <form role="form">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>First</label>
                                         <input class="form-control" placeholder="name">
                                     </div>
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input class="form-control" placeholder="Enter Last Name">
-                                    </div>
+
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input class="form-control" placeholder="Enter email">
@@ -57,11 +54,19 @@ include '../includes/_headers.php'
                                         <label>Language Skill</label>
                                         <input class="form-control" placeholder="Enter email">
                                     </div>
+                                    <div class="col-lg-6">
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input class="form-control" placeholder="Enter Last Name">
+                                            </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-warning">Reset</button>
-                                </form>
-                            </div>
+
+
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="reset" class="btn btn-warning">Reset</button>
+                                        </form>
+                                    </div>
 
 
 
@@ -78,6 +83,9 @@ include '../includes/_headers.php'
         </div>
         <!-- /.row -->
     </div>
+    <!-- /#page-wrapper -->
+        <!-- /.row -->
+
     <!-- /#page-wrapper -->
 
 </div>

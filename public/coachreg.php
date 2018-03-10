@@ -2,7 +2,7 @@
 include '../includes/_headers.php'
 ?>
 
-<div id="wrapper">
+<div id="wrapper" xmlns: xmlns:>
 
     <!-- Navigation -->
     <?php include '../includes/_navbar.php' ?>
@@ -108,11 +108,11 @@ include '../includes/_headers.php'
                                     </div>
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input class="form-control" name="phone" pattern="[0-9]{3}[ -][0-9]{3}[ -][0-9]{4}">
+                                        <input class="form-control" type="tel" name="phone">
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
-                                        <select name="gender" id="gender" class="form-control">
+                                        <select name="gender" name="gender" class="form-control">
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         </select>

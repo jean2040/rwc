@@ -46,7 +46,7 @@
                         <a href="../public/coachreg.php">Add Coaches</a>
                     </li>
                     <li>
-                        <a href="#">Coaches Reports</a>
+                        <a href="../public/coachreport.php">Coaches Reports</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
