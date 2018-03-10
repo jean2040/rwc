@@ -3,6 +3,12 @@
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
+<!-- DataTables CSS -->
+<link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
 <!-- Bootstrap Core JavaScript -->
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 

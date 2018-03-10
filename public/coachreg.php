@@ -73,9 +73,9 @@ include '../includes/_headers.php'
                         Register Coach
                     </div>
                     <div class="panel-body">
+                        <form role="form" method="POST" id="coachRegistration">
                         <div class="row">
 
-                            <form role="form" method="POST" id="coachRegistration">
                                 <div class="col-lg-6">
 
                                     <div class="form-group">
@@ -87,8 +87,7 @@ include '../includes/_headers.php'
                                         <input class="form-control" id="uPass" name="uPass" type="password" required>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-warning">Reset</button>
+
 
                                 </div>
 
@@ -142,11 +141,16 @@ include '../includes/_headers.php'
                                     </div>
 
 
+
                                 </div>
 
-                            </form>
 
                         </div>
+                            <div class="col-md-16">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                <button type="reset" class="btn btn-warning btn-block">Reset</button>
+                            </div>
+                        </form>
                         <!-- /.col-lg-6 (nested) -->
                     </div>
                     <!-- /.row (nested) -->
