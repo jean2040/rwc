@@ -1,10 +1,17 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: JeanPaul
+ * Date: 3/13/2018
+ * Time: 6:35 PM
+ */
+
 include '../includes/_headers.php';
 
 
-// get coaches data
+// get tracks data from db
 
-$my_coaches = getAll('rwccoach', null,null,null);
+$my_tracks = getAll('track', null,null,null);
 
 
 ?>
@@ -23,46 +30,42 @@ $my_coaches = getAll('rwccoach', null,null,null);
             <div class="col-lg-12">
                 <div class="panel panel-green">
                     <div class="panel-heading">
-                        <h1> <i class="fa fa-mortar-board fa-fw"></i> Coaches Reports</h1>
+                        <h1> <i class="fa fa-mortar-board fa-fw"></i> RWC Tracks </h1>
+                        <small>List of RWC tracks. Click on a track to Edit</small>
                         <!-- ADD ADD BUTTON-->
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
-                        <table  id="coaches" width="100%" class="table table-striped table-bordered table-hover">
+                            <table  id="tracks" width="100%" class="table table-striped table-bordered table-hover">
 
-                                        <thead>
-                                        <tr>
-                                            <th> ID</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>More...</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Short Title</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                                        <?php
-                                        while ($coach = $my_coaches->fetch_assoc()) {
-                                            ?>
+                                <?php
+                                while ($track = $my_tracks->fetch_assoc()) {
+                                    ?>
 
-                                            <tr>
-                                                <td class="sorting_1"><?php echo $coach['CoachID'] ?></td>
-                                                <td><?php echo $coach['Firstname'] ?></td>
-                                                <td><?php echo $coach['Lastname'] ?></td>
-                                                <td><?php echo $coach['Email'] ?></td>
-                                                <td class="center"><?php echo $coach['Phone'] ?></td>
-                                                <td><button type="button" class="btn btn-info">Open</button></td>
-                                            </tr>
+                                    <tr>
+                                        <td class="sorting_1"><?php echo $track['Title'] ?></td>
+                                        <td><?php echo $track['ShortTitle'] ?></td>
+                                        <td><?php echo $track['Description'] ?></td>
 
-                                            <?php
-                                            }
-                                        ?>
+                                    </tr>
+
+                                    <?php
+                                }
+                                ?>
 
 
-                                        </tbody>
-                                    </table>
+                                </tbody>
+                            </table>
                         </div>
 
                         <!-- Modal Coach -->
@@ -97,7 +100,7 @@ $my_coaches = getAll('rwccoach', null,null,null);
                                             <div class="col-sm-6" id="modal_language">3</div>
                                         </div>
 
-                                        </div>
+                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-warning">Edit</button>
@@ -124,46 +127,27 @@ $my_coaches = getAll('rwccoach', null,null,null);
 
 
 <?php
+//include datatables scripts
 include '../includes/_footer_tables.php'
 ?>
 
 
+<!--Custom Table Script for Tracks -->
+
 <script>
     $(document).ready(function() {
-        var table = $('#coaches').DataTable({
+        var table = $('#tracks').DataTable({
             responsive: true,
             dom: 'Bflrtip',
             buttons: [
                 'copy', 'excel', 'pdf'
             ]
         });
-// this function will get  info form datadabe on click using ajax and then showing it to the modal
-        $('#coaches tbody').on('click', 'tr', function () {
-            var data = table.row( this ).data();
-
-            $.ajax({
-                type: "POST",
-                url: "../php/getUser.php",
-                data: { user_id: data[0]},
-                dataType: "json",
-                success: function(data) {
-                    //and from data you can retrive your user details and show them in the modal
-                    $('#myModal').modal();
-                    $('#myModalLabel').text(data['Firstname']+""+data['Lastname']);
-                    $('#modal_email').text(data['Email']);
-                    $('#modal_gender').text(data['Gender']);
-                    $('#modal_phone').text(data['Phone']);
-                    $('#modal_level').text(data['Level']);
-                    $('#modal_language').text(data['LanguageSkill']);
-                    console.log(data);
-                }});
-
-
-            //alert( 'You clicked on '+data[0]+'\'s row' );
-        } );
     });
 </script>
 
 </body>
 
 </html>
+
+

@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="../public/studentreg.php"><i class="fa fa-road fa-fw"></i>
+                <a href="../public/trackreport.php"><i class="fa fa-road fa-fw"></i>
                     <span class="masked">
                         Tracks
                     </span>
