@@ -22,52 +22,33 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-calendar fa-fw"></i> Sections<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">View Sections</a>
-                    </li>
-                    <li>
-                        <a href="#">Edit Sections</a>
-                    </li>
-                </ul>
+                <a href="../public/coachreg.php"><i class="fa fa-calendar fa-fw"></i>
+                    <span class="masked">
+                        Sections
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="../public/studentreg.php"><i class="fa fa-road fa-fw"></i>
+                    <span class="masked">
+                        Tracks
+                    </span>
+                </a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-road fa-fw"></i> Tracks<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">View Tracks</a>
-                    </li>
-                    <li>
-                        <a href="#">Edit Tracks</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <a href="../public/coachreg.php"><i class="fa fa-users fa-fw"></i>
+                    <span class="masked">
+                        Coaches
+                    </span>
+                </a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> Coaches<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="../public/coachreg.php">View Coaches</a>
-                    </li>
-                    <li>
-                        <a href="#">Edit Coaches</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-graduation-cap fa-fw"></i> Students<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">View Students</a>
-                    </li>
-                    <li>
-                        <a href="../public/studentreg.php">Edit Students</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <a href="../public/studentreg.php"><i class="fa fa-graduation-cap fa-fw"></i>
+                    <span class="masked">
+                        Students
+                    </span>
+                </a>
             </li>
         </ul>
     </div>
