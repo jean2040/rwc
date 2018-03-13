@@ -37,7 +37,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="../public/coachreg.php"><i class="fa fa-users fa-fw"></i>
+                <a href="../public/coachreport.php"><i class="fa fa-users fa-fw"></i>
                     <span class="masked">
                         Coaches
                     </span>

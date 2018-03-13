@@ -30,7 +30,7 @@ $my_tracks = getAll('track', null,null,null);
             <div class="col-lg-12">
                 <div class="panel panel-green">
                     <div class="panel-heading">
-                        <h1> <i class="fa fa-mortar-board fa-fw"></i> RWC Tracks </h1>
+                        <h1> <i class="fa fa-road fa-fw"></i> RWC Tracks </h1>
                         <small>List of RWC tracks. Click on a track to Edit</small>
                         <!-- ADD ADD BUTTON-->
                     </div>
