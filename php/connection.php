@@ -1,7 +1,7 @@
 <?php
-$host = "127.0.0.1";
-$user = 'root';
-$pass = '';
+$host = "rwcportal.cibvup9pjqxy.us-east-2.rds.amazonaws.com";
+$user = 'rwcadmin';
+$pass = 'rwcnjitportal';
 $db = "rwc";
 
 $connection = new mysqli($host,$user,$pass,$db);
