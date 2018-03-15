@@ -1,9 +1,9 @@
 <?php
-$host = "rwcportal.cibvup9pjqxy.us-east-2.rds.amazonaws.com";
-$user = 'rwcadmin';
-$pass = 'rwcnjitportal';
+$host = "127.0.0.1";
+$user = 'root';
+$pass = '';
 $db = "rwc";
-
+//testing
 $connection = new mysqli($host,$user,$pass,$db);
 
 if ($connection->connect_error){
