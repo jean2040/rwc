@@ -3,7 +3,7 @@ $host = "127.0.0.1";
 $user = 'root';
 $pass = '';
 $db = "rwc";
-//testing2
+//testing gitnore
 $connection = new mysqli($host,$user,$pass,$db);
 
 if ($connection->connect_error){
