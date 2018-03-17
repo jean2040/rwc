@@ -10,7 +10,17 @@ include '../includes/_headers.php'
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Coaches</h1>
+                <h1 class="page-header">
+                    <i class="fa fa-users fa-fw">Coaches</i>
+                    <i class="pull-right">
+                        <a href="../public/coachreport.php">
+                            <button type="button" class="btn btn-default btn-circle btn-md">
+                                <i class="fa fa-times">
+                                </i>
+                            </button>
+                        </a>
+                    </i>
+                </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>

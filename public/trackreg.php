@@ -16,7 +16,17 @@ include '../includes/_headers.php'
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tracks</h1>
+                <h1 class="page-header">
+                <i class="fa fa-road fa-fw">Tracks</i>
+                            <i class="pull-right">
+                                <a href="../public/trackreport.php">
+                                    <button type="button" class="btn btn-default btn-circle btn-md">
+                                            <i class="fa fa-times">
+                                            </i>
+                                        </button>
+                                    </a>
+                            </i> 
+                </h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
