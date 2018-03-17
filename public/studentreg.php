@@ -27,69 +27,55 @@ include '../includes/_headers.php'
                                 <form role="form">
                                     <div class="form-group">
                                         <label>First</label>
-                                        <input class="form-control" placeholder="name">
+                                        <input class="form-control" placeholder="First name">
                                     </div>
-
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" placeholder="Enter email">
+                                        <label>Last</label>
+                                        <input class="form-control" placeholder="Last name">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input class="form-control" placeholder="Phone">
+                                        <input class="form-control" placeholder="Phone number">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Level</label>
-                                        <input class="form-control" placeholder="Enter email">
+                                        <label>Email</label>
+                                        <input class="form-control" placeholder="Email address">
                                     </div>
-
                                     <div class="form-group">
                                         <label>Gender</label>
-                                        <input class="form-control" placeholder="Enter email">
+                                        <input class="form-control" placeholder="Gender">
                                     </div>
-
                                     <div class="form-group">
-                                        <label>Language Skill</label>
-                                        <input class="form-control" placeholder="Enter email">
+                                        <label>Language</label>
+                                        <input class="form-control" placeholder="Language skills">
                                     </div>
-                                    <div class="col-lg-6">
-                                        <form role="form">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input class="form-control" placeholder="Enter Last Name">
-                                            </div>
-
-
-
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <button type="reset" class="btn btn-warning">Reset</button>
-                                        </form>
+                                    <div class="form-group">
+                                        <label>Grade</label>
+                                        <input class="form-control" placeholder="Grade level">
                                     </div>
-
-
-
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-warning">Reset</button>
+                                </form>
                             </div>
-                            <!-- /.col-lg-6 (nested) -->
                         </div>
-                        <!-- /.row (nested) -->
+                            <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.panel-body -->
+                        <!-- /.row (nested) -->
                 </div>
-                <!-- /.panel -->
+                    <!-- /.panel-body -->
             </div>
-            <!-- /.col-lg-12 -->
+                <!-- /.panel -->
         </div>
-        <!-- /.row -->
+            <!-- /.col-lg-12 -->
     </div>
+        <!-- /.row -->
+</div>
     <!-- /#page-wrapper -->
         <!-- /.row -->
 
     <!-- /#page-wrapper -->
-
-</div>
-
 
 <?php
 include '../includes/_footer.php'

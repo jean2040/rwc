@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="../public/studentreg.php"><i class="fa fa-graduation-cap fa-fw"></i>
+                <a href="../public/studentreport.php"><i class="fa fa-graduation-cap fa-fw"></i>
                     <span class="masked">
                         Students
                     </span>

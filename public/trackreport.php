@@ -30,8 +30,17 @@ $my_tracks = getAll('track', null,null,null);
             <div class="col-lg-12">
                 <div class="panel panel-green">
                     <div class="panel-heading">
-                        <h1> <i class="fa fa-road fa-fw"></i> RWC Tracks </h1>
-                        <small>List of RWC tracks. Click on a track to Edit</small>
+                        <h1> 
+                            <i class="fa fa-road fa-fw">Tracks</i>
+                            <i class="pull-right">
+                                <a href="../public/trackreg.php">
+                                    <button type="button" class="btn btn-default btn-circle btn-md">
+                                            <i class="fa fa-plus">
+                                            </i>
+                                        </button>
+                                    </a>
+                            </i> 
+                        </h1>
                         <!-- ADD ADD BUTTON-->
                     </div>
                     <!-- /.panel-heading -->
