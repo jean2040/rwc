@@ -11,5 +11,5 @@ include 'dbSelect.php';
 $id = $_POST['user_id'];
 
 $user = getById('rwccoach','CoachID',$id);
-
+$user["LanguageSkill"] = unserialize($user["LanguageSkill"]);
 echo json_encode($user);
