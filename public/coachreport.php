@@ -163,13 +163,13 @@ include '../includes/_footer_tables.php'
             $.ajax({
                 type: "POST",
                 url: "../php/getUser.php",
-                data: { user_id: data[0]},
+                data: { id: data[0],table:"rwccoach", value: "CoachID"},
                 dataType: "json",
                 success: function(data) {
 
                     //and from data you can retrieve your user details and show them in the modal
                     $('#myModal').modal();
-                    $('#myModalLabel2').text(data['Firstname']+""+data['Lastname']);
+                    $('#myModalLabel2').text(data['Firstname']+" "+data['Lastname']);
                     $('#modal_email').text(data['Email']);
                     $('#modal_gender').text(data['Gender']);
                     $('#modal_phone').text(data['Phone']);

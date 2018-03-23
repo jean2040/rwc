@@ -50,9 +50,11 @@ $my_tracks = getAll('track', null,null,null);
 
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Title</th>
-                                    <th>Short Title</th>
                                     <th>Description</th>
+                                    <th>Section</th>
+                                    <th>Details</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,9 +64,14 @@ $my_tracks = getAll('track', null,null,null);
                                     ?>
 
                                     <tr>
+                                        <td><?php echo $track['TrackID'] ?></td>
                                         <td class="sorting_1"><?php echo $track['Title'] ?></td>
-                                        <td><?php echo $track['ShortTitle'] ?></td>
                                         <td><?php echo $track['Description'] ?></td>
+                                        <td><?php echo $track['SectionID'] ?></td>
+                                        <td> <form method="post" action="trackEdit.php">
+                                                <input type="submit" class="btn btn-warning" name="action" value="Edit">
+                                                <input type="hidden" name="id" value="<?php echo $track['TrackID']; ?>"/>
+                                            </form></td>
 
                                     </tr>
 
@@ -75,49 +82,6 @@ $my_tracks = getAll('track', null,null,null);
 
                                 </tbody>
                             </table>
-                        </div>
-
-                        <!-- Modal Coach -->
-
-                        <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; padding-right: 16px;">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="myModalLabel"></h4>
-                                    </div>
-                                    <div class="modal-body" id="modalbody">
-                                        <div class="row">
-                                            <div class="col-sm-3">Email:</div>
-                                            <div class="col-sm-6" id="modal_email"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-3">Phone:</div>
-                                            <div class="col-sm-6" id="modal_phone"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-3">Level:</div>
-                                            <div class="col-sm-6" id="modal_level">3</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-3">Gender:</div>
-                                            <div class="col-sm-6" id="modal_gender">3</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-3">Language:</div>
-                                            <div class="col-sm-6" id="modal_language">3</div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-warning">Edit</button>
-                                    </div>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
                         </div>
 
 
@@ -152,6 +116,8 @@ include '../includes/_footer_tables.php'
                 'copy', 'excel', 'pdf'
             ]
         });
+
+
     });
 </script>
 

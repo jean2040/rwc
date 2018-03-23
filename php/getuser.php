@@ -8,8 +8,13 @@
 include 'connection.php';
 include 'dbSelect.php';
 
-$id = $_POST['user_id'];
+$id = $_POST['id'];
+$table = $_POST['table'];
+$value = $_POST['value'];
 
-$user = getById('rwccoach','CoachID',$id);
-$user["LanguageSkill"] = unserialize($user["LanguageSkill"]);
+$user = getById($table,$value ,$id);
+if (isset($user["LanguageSkill"])){
+    $user["LanguageSkill"] = unserialize($user["LanguageSkill"]);
+}
+
 echo json_encode($user);
