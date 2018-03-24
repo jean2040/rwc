@@ -16,7 +16,8 @@ if($form["cnt"] == 3){
     updateById('track','TrackID',$_POST["id"],
         array("Title" => $form["trackTitle"],
             "ShortTitle" => $form["shortTitle"],
-            "Description" => $form["trackDes"]
+            "Description" => $form["trackDes"],
+            "SectionID" => $_POST["sectionID"]
         )
     );
     $error = "success";
@@ -98,7 +99,7 @@ if (isset($_POST["id"])){
                                 <div class="form-group">
                                     <label>Section</label>
                                     <p id="p_trackSection"><?php echo $section['SectionName']; ?></p>
-                                    <input type="text" aria-hidden="true" hidden id="trackSection" name="trackSection" value="<?php echo $section['SectionName']; ?>">
+                                    <input type="text" aria-hidden="true" hidden id="sectionID" name="sectionID" value="<?php echo $section['SectionID']; ?>">
                                     <input type="button" value="Change Section" class="btn btn-primary" data-toggle="modal" data-target="#sectionModal">
                                 </div>
 

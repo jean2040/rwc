@@ -83,7 +83,7 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
     $query .= " FROM {$table}";
 
     if(isset($joinTable)){
-        $query .= " JOIN {$joinTable}";
+        $query .= " LEFT JOIN {$joinTable}";
     }
 
     if(isset($query_array)){

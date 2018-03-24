@@ -79,7 +79,7 @@ $sections = getAll('section',null,null,null);
             var data = table.row( this ).data();
             console.log(data);
             $('#p_trackSection').text(data[1]);
-            $('#trackSection').text(data[0]);
+            $('#sectionID').val(data[0]);
             $('#sectionModal').modal();
             //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
