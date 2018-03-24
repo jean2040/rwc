@@ -143,7 +143,7 @@ include '../includes/_footer_tables.php'
 
 <script>
     $(document).ready(function() {
-        var table = $('#section').DataTable({
+        var table = $('#students').DataTable({
             responsive: true,
             dom: 'Bflrtip',
             buttons: [
@@ -151,13 +151,13 @@ include '../includes/_footer_tables.php'
             ]
         });
 // this function will get  info form datadabe on click using ajax and then showing it to the modal
-        $('#student tbody').on('click', 'tr', function () {
+        $('#students tbody').on('click', 'tr', function () {
             var data = table.row( this ).data();
 
             $.ajax({
                 type: "POST",
                 url: "../php/getUser.php",
-                data: { user_id: data[0]},
+                data: { id: data[0],table:"students", value: "StudentID"},
                 dataType: "json",
                 success: function(data) {
                     //and from data you can retrive your user details and show them in the modal
