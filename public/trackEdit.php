@@ -1,28 +1,39 @@
 <?php
 include '../includes/_headers.php';
+include '../php/dbUpdate.php';
 /**
  * Created by PhpStorm.
  * User: JeanPaul
  * Date: 3/22/2018
  * Time: 7:39 PM
+ * $_POST["action"]) &&
  */
-if (isset($_POST["action"]) && isset($_POST["id"])){
-    $track = getById('track','TrackID',$_POST["id"]);
-    $section = getById('section','SectionID',$track["SectionID"]);
-    echo $track['Title'];
-    echo "Here we are";
-}
-
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("trackTitle", "shortTitle", "trackDes"));
+
 if($form["cnt"] == 3){
     //inserts values to the TRACK table
-    //updateById('track','TrackID',$_POST[""])
+    updateById('track','TrackID',$_POST["id"],
+        array("Title" => $form["trackTitle"],
+            "ShortTitle" => $form["shortTitle"],
+            "Description" => $form["trackDes"]
+
+        )
+    );
 
     $error = "success";
 }
 else {
     $error = "";
+}
+
+if (isset($_POST["id"])){
+    $t_id = $_POST["id"];
+    $track = getById('track','TrackID',$_POST["id"]);
+    $section = getById('section','SectionID',$track["SectionID"]);
+    echo $section['SectionName'];
+    $coaches = getById('rwccoachteachtrack','TrackID',$_POST["id"]);
+
 }
 
 
@@ -76,21 +87,22 @@ else {
                         <div class="tab-pane fade in active" id="general">
                             <h4><?php echo $track['Title']; ?></h4>
                             <form role="form" method="post">
+                                <input hidden name="id" value="<?php echo $t_id; ?>">
                                 <div class="form-group">
-                                    <label>Track Title</label>
+                                    <label for="trackTitle">Track Title</label>
                                     <input class="form-control" id="trackTitle" name="trackTitle" required value="<?php echo $track['Title']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label>Short Title</label>
+                                    <label for="shortTitle"  >Short Title</label>
                                     <input class="form-control" id="shortTitle" name="shortTitle" type="text" value="<?php echo $track['ShortTitle']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label for="trackDescrip">Description</label>
                                     <input class="form-control" id="trackDescrip" name="trackDes" type="text" required value="<?php echo $track['Description']; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Section</label>
-                                    <input class="form-control" id="trackTitle" name="trackTitle" required value="<?php echo $section['SectionName']; ?>">
+                                    <input class="form-control" id="trackTitle" name="trackSection" required value="<?php echo $section['SectionName']; ?>">
                                 </div>
 
                                 <div class="col-md-12">
@@ -102,7 +114,16 @@ else {
                         </div>
                         <div class="tab-pane fade" id="coaches">
                             <h4>Track Coaches</h4>
-                            <p>Add coaches here</p>
+                            <?php
+                            if (count($coaches)== 0){
+                                echo "<p> No Coaches Assigned, please add one </p>";
+                                echo '<button  type="button" class="btn btn-primary">Add Coach </button> ';
+
+                            }else{
+                                echo "coaches list";
+                            }
+                            ?>
+
                         </div>
                         <div class="tab-pane fade" id="students">
                             <h4>Students</h4>
