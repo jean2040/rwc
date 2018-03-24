@@ -31,7 +31,7 @@ $my_students = getAll('students', null,null,null);
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <h1> 
-                            <i class="fa fa-graduation-cap fa-fw">students</i>
+                            <i class="fa fa-graduation-cap fa-fw">Students</i>
                             <i class="pull-right">
                                 <a href="../public/studentreg.php">
                                     <button type="button" class="btn btn-default btn-circle btn-md">
@@ -50,9 +50,12 @@ $my_students = getAll('students', null,null,null);
 
                                 <thead>
                                 <tr>
-                                    <th>First</th>
-                                    <th>Last</th>
-                                    <th>Track</th>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Gender</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,9 +65,12 @@ $my_students = getAll('students', null,null,null);
                                     ?>
 
                                     <tr>
-                                        <td class="sorting_1"><?php echo $student['Title'] ?></td>
-                                        <td><?php echo $student['ShortTitle'] ?></td>
-                                        <td><?php echo $student['Description'] ?></td>
+                                        <td class="sorting_1"><?php echo $student['StudentID'] ?></td>
+                                        <td><?php echo $student['FirstName'] ?></td>
+                                        <td><?php echo $student['LastName'] ?></td>
+                                        <td><?php echo $student['Phone'] ?></td>
+                                        <td><?php echo $student['Email'] ?></td>
+                                        <td><?php echo $student['Gender'] ?></td>
 
                                     </tr>
 
@@ -89,24 +95,16 @@ $my_students = getAll('students', null,null,null);
                                     </div>
                                     <div class="modal-body" id="modalbody">
                                         <div class="row">
-                                            <div class="col-sm-3">Email:</div>
-                                            <div class="col-sm-6" id="modal_email"></div>
-                                        </div>
-                                        <div class="row">
                                             <div class="col-sm-3">Phone:</div>
-                                            <div class="col-sm-6" id="modal_phone"></div>
+                                            <div class="col-sm-6" id="modal_phone">3</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-3">Level:</div>
-                                            <div class="col-sm-6" id="modal_level">3</div>
+                                            <div class="col-sm-3">Email:</div>
+                                            <div class="col-sm-6" id="modal_email">3</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-3">Gender:</div>
                                             <div class="col-sm-6" id="modal_gender">3</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-3">Language:</div>
-                                            <div class="col-sm-6" id="modal_language">3</div>
                                         </div>
 
                                     </div>
@@ -145,13 +143,35 @@ include '../includes/_footer_tables.php'
 
 <script>
     $(document).ready(function() {
-        var table = $('#students').DataTable({
+        var table = $('#section').DataTable({
             responsive: true,
             dom: 'Bflrtip',
             buttons: [
                 'copy', 'excel', 'pdf'
             ]
         });
+// this function will get  info form datadabe on click using ajax and then showing it to the modal
+        $('#student tbody').on('click', 'tr', function () {
+            var data = table.row( this ).data();
+
+            $.ajax({
+                type: "POST",
+                url: "../php/getUser.php",
+                data: { user_id: data[0]},
+                dataType: "json",
+                success: function(data) {
+                    //and from data you can retrive your user details and show them in the modal
+                    $('#myModal').modal();
+                    $('#myModalLabel2').text(data['Firstname']+" "+data['Lastname']);
+                    $('#modal_phone').text(data['Phone']);
+                    $('#modal_email').text(data['Email']);
+                    $('#modal_gender').text(data['Gender']);
+                    console.log(data);
+                }});
+
+
+            //alert( 'You clicked on '+data[0]+'\'s row' );
+        } );
     });
 </script>
 
