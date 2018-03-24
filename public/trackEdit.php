@@ -17,25 +17,20 @@ if($form["cnt"] == 3){
         array("Title" => $form["trackTitle"],
             "ShortTitle" => $form["shortTitle"],
             "Description" => $form["trackDes"]
-
         )
     );
-
     $error = "success";
 }
 else {
     $error = "";
 }
-
+//Check for ID and load the form with latest data.
 if (isset($_POST["id"])){
     $t_id = $_POST["id"];
     $track = getById('track','TrackID',$_POST["id"]);
     $section = getById('section','SectionID',$track["SectionID"]);
-    echo $section['SectionName'];
     $coaches = getById('rwccoachteachtrack','TrackID',$_POST["id"]);
-
 }
-
 
 ?>
 
@@ -87,7 +82,7 @@ if (isset($_POST["id"])){
                         <div class="tab-pane fade in active" id="general">
                             <h4><?php echo $track['Title']; ?></h4>
                             <form role="form" method="post">
-                                <input hidden name="id" value="<?php echo $t_id; ?>">
+                                <input aria-hidden="true" hidden name="id" value="<?php echo $t_id; ?>">
                                 <div class="form-group">
                                     <label for="trackTitle">Track Title</label>
                                     <input class="form-control" id="trackTitle" name="trackTitle" required value="<?php echo $track['Title']; ?>">
@@ -102,7 +97,9 @@ if (isset($_POST["id"])){
                                 </div>
                                 <div class="form-group">
                                     <label>Section</label>
-                                    <input class="form-control" id="trackTitle" name="trackSection" required value="<?php echo $section['SectionName']; ?>">
+                                    <p id="p_trackSection"><?php echo $section['SectionName']; ?></p>
+                                    <input type="text" aria-hidden="true" hidden id="trackSection" name="trackSection" value="<?php echo $section['SectionName']; ?>">
+                                    <input type="button" value="Change Section" class="btn btn-primary" data-toggle="modal" data-target="#sectionModal">
                                 </div>
 
                                 <div class="col-md-12">
@@ -146,8 +143,12 @@ if (isset($_POST["id"])){
 </div>
 
 <?php
-include '../includes/_footer.php'
+include '../includes/_footer_tables.php';
+include 'sectionModal.php';
 ?>
 
+</body>
+
+</html>
 
 
