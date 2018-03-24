@@ -80,7 +80,7 @@ $sections = getAll('section',null,null,null);
             console.log(data);
             $('#p_trackSection').text(data[1]);
             $('#sectionID').val(data[0]);
-            $('#sectionModal').modal();
+            $('#sectionModal').modal('toggle');
             //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
     });
