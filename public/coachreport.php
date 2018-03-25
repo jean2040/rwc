@@ -145,7 +145,19 @@ include '../includes/_footer_tables.php'
             responsive: true,
             dom: 'Bflrtip',
             buttons: [
-                'copy', 'excel', 'pdf'
+                {
+                    extend: 'excel',
+                    exportOptions:{
+                        columns:[1,2,3,4,5]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions:{
+                        columns:[1,2,3,4,5]
+                    }
+                }
+
             ],
             "columnDefs":[
                 {
@@ -156,10 +168,11 @@ include '../includes/_footer_tables.php'
             ]
 
         });
+
 // this function will get  info form database on click using ajax and then showing it to the modal
         $('#coaches tbody').on('click', 'tr', function () {
             var data = table.row( this ).data();
-            console.log(data);
+            //console.log(data);
             $.ajax({
                 type: "POST",
                 url: "../php/getUser.php",
