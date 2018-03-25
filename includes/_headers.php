@@ -1,7 +1,7 @@
 <?php
 include '../php/connection.php';
 include '../php/functions.php';
-include '../php/dbInsert';
+include '../php/dbInsert.php';
 include '../php/dbSelect.php';
 
 
@@ -17,7 +17,7 @@ include '../php/dbSelect.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>RWC Portal - Admin Dashboard</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
