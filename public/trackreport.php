@@ -11,15 +11,7 @@ include '../includes/_headers.php';
 
 // get tracks data from db
 
-//$my_tracks = getAll('track', null,null,null);
-$my_tracks = getAll2(
-        array("track.*","section.SectionName"),
-        'track',
-        'section',
-        "SectionID",
-        null,null,null
-);
-
+$my_tracks = getAll('track', null,null,null);
 
 ?>
 
@@ -60,7 +52,6 @@ $my_tracks = getAll2(
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Section</th>
                                     <th>Details</th>
                                 </tr>
                                 </thead>
@@ -74,10 +65,10 @@ $my_tracks = getAll2(
                                         <td><?php echo $track['TrackID'] ?></td>
                                         <td class="sorting_1"><?php echo $track['Title'] ?></td>
                                         <td><?php echo $track['Description'] ?></td>
-                                        <td><?php echo $track['SectionName'] ?></td>
                                         <td> <form method="post" action="trackEdit.php">
                                                 <input type="submit" class="btn btn-warning" name="action" value="Edit">
                                                 <input type="hidden" name="id" value="<?php echo $track['TrackID']; ?>"/>
+
                                             </form></td>
 
                                     </tr>
