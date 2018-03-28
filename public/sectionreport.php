@@ -29,7 +29,7 @@ $my_sections = getAll('section', null,null,null);
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
-                        <table  id="coaches" width="100%" class="table table-striped table-bordered table-hover">
+                        <table  id="sections" width="100%" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
                                             <!-- <th> ID</th> -->
@@ -120,7 +120,7 @@ include '../includes/_footer_tables.php'
 
 <script>
     $(document).ready(function() {
-        var table = $('#section').DataTable({
+        var table = $('#sections').DataTable({
             responsive: true,
             dom: 'Bflrtip',
             buttons: [
@@ -128,26 +128,7 @@ include '../includes/_footer_tables.php'
             ]
         });
 // this function will get  info form datadabe on click using ajax and then showing it to the modal
-        $('#section tbody').on('click', 'tr', function () {
-            var data = table.row( this ).data();
 
-            $.ajax({
-                type: "POST",
-                url: "../php/getUser.php",
-                data: { id: data[0],table:"section", value: "SectionID"},
-                dataType: "json",
-                success: function(data) {
-                    //and from data you can retrive your user details and show them in the modal
-                    $('#myModal').modal();
-                    $('#myModalLabel').text(data['SectionName']);
-                    $('#modal_name').text(data['StartDate']);
-                    $('#modal_end').text(data['EndDate']);
-                    console.log(data);
-                }});
-
-
-            //alert( 'You clicked on '+data[0]+'\'s row' );
-        } );
     });
 </script>
 </body>
