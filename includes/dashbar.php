@@ -12,7 +12,7 @@
         <ul class="nav" id="side-menu">
 
             <li>
-                <a href="../public/coachreg.php"><i class="fa fa-calendar fa-fw"></i>
+                <a href="../public/sectionreport.php"><i class="fa fa-calendar fa-fw"></i>
                     <span class="masked">
                         Sections
                     </span>

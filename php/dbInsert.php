@@ -8,7 +8,7 @@ function insertBlank($table) {
 
     $query  = "INSERT INTO {$table}";
 
-     echo $query;
+     //echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
@@ -47,7 +47,7 @@ function insertFields($table, $fields_array) {
     $query .= $values;
     $query .= ")";
     //
-    echo $query;
+    //echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);

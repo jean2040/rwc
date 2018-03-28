@@ -18,7 +18,7 @@ $my_sections = getAll('section', null,null,null);
                             <i class="fa fa-calendar fa-fw">Sections</i>
                             <i class="pull-right">
                                 <a href="../public/sectionreg.php">
-                                    <button type="button" class="btn btn-default btn-circle btn-md">
+                                    <button type="button" class="btn btn-default btn-circle btn-lg">
                                         <i class="fa fa-plus">
                                         </i>
                                     </button>
