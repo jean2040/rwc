@@ -46,7 +46,7 @@ if (isset($_POST["id"])){
                 <h1 class="page-header">
                     <i class="fa fa-road fa-fw">Tracks</i>
                     <i class="pull-right">
-                        <a href="../public/trackreport.php">
+                        <a href="trackreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">
                                 <i class="fa fa-times">
                                 </i>

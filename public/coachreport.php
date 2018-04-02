@@ -42,13 +42,13 @@ $my_coaches2 = getAll2(array("logininfo.UserName", "rwccoach.*"),'rwccoach',"log
 
                                 <thead>
                                 <tr>
-                                    <th style="display:none"> ID</th>
+
                                     <th>User Name</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <!-- <th>More...</th> -->
+                                    <th>More...</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -58,13 +58,17 @@ $my_coaches2 = getAll2(array("logininfo.UserName", "rwccoach.*"),'rwccoach',"log
                                     ?>
 
                                     <tr>
-                                        <td><?php echo $coach['CoachID'] ?></td>
+
                                         <td class="sorting_1" style="display:none"><?php echo $coach['UserName'] ?></td>
                                         <td><?php echo $coach['Firstname'] ?></td>
                                         <td><?php echo $coach['Lastname'] ?></td>
                                         <td><?php echo $coach['Email'] ?></td>
                                         <td class="center"><?php echo $coach['Phone'] ?></td>
-                                        <!-- <td><button type="button" class="btn btn-info">Open</button></td> -->
+                                        <td> <form method="post" action="coachEdit.php">
+                                                <input type="submit" class="btn btn-warning" name="action" value="Edit">
+                                                <input type="hidden" name="id" value="<?php echo $coach['CoachID']; ?>"/>
+
+                                            </form></td>
                                     </tr>
 
                                     <?php
@@ -170,7 +174,7 @@ include '../includes/_footer_tables.php'
         });
 
 // this function will get  info form database on click using ajax and then showing it to the modal
-        $('#coaches tbody').on('click', 'tr', function () {
+        /*$('#coaches tbody').on('click', 'tr', function () {
             var data = table.row( this ).data();
             //console.log(data);
             $.ajax({
@@ -193,7 +197,7 @@ include '../includes/_footer_tables.php'
 
 
             //alert( 'You clicked on '+data[0]+'\'s row' );
-        } );
+        } );*/
     });
 </script>
 

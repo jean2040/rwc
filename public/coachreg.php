@@ -66,7 +66,9 @@ include '../includes/_headers.php'
                                     "Phone" => $_POST['phone'],
                                     "Level" => "",
                                     "Gender" => $_POST['gender'],
-                                    "LanguageSkill" => serialize($_POST['language'])
+                                    "LanguageSkill" => serialize($_POST['language']),
+                                    "CreationTime" => date("Y-m-d H:i:s"),
+                                    "DeleteFlag" => "N"
 
                                 )
                             );
