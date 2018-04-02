@@ -30,6 +30,18 @@ if($form["cnt"] == 2){
 else {
     $error = "";
 }
+
+if (isset($_POST['delete'])){
+    updateById('rwcCoach','CoachID',$_POST["delete"],
+        array(
+            "DeleteFlag" => 'Y'
+
+        )
+    );
+    header("Location: coachreport.php");
+    die();
+}
+
 //Check for ID and load the form with latest data.
 if (isset($_POST["id"])){
     $c_id = $_POST["id"];
@@ -69,8 +81,16 @@ if (isset($_POST["id"])){
 
         <div class="col-lg-8 col-lg-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>You are Editing : <?php echo $coach['Firstname'] . " " . $coach['Lastname'] ; ?> Profile</h4>
+                <div class="panel-heading" style="height: 55px;">
+                    <div class="col-md-9"><h4>You are Editing : <?php echo $coach['Firstname'] . " " . $coach['Lastname'] ; ?> Profile</h4></div>
+                    <div class="col-md-3">
+                        <form class="pull-right" action="" method="post" role="form">
+                            <input aria-hidden="true" hidden name="delete" value="<?php echo $c_id; ?>">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+
+
                 </div>
                 <div class="panel-body">
                     <form role="form" method="POST" id="coachUpdate">
@@ -78,14 +98,7 @@ if (isset($_POST["id"])){
                         <div class="row">
 
                             <div class="col-lg-12">
-                                <?php echo print_r($coach['LanguageSkill']) . ' Skills'; ?>
-                                <?php
-                                    if(in_array("other",$coach['LanguageSkill'])){
-                                        echo "got it";
-                                    }
-
-                                ?>
-                                <div class="form-group">
+                               <div class="form-group">
                                     <label>First Name</label>
                                     <input class="form-control" id="Firstname" name="Firstname" required value="<?php echo $coach['Firstname']; ?>">
                                 </div>
