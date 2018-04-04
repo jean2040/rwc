@@ -80,22 +80,24 @@ include '../includes/_headers.php'
                                         <label for="sLocation">Location</label>
                                         <input class="form-control" id="sLocation" name="sLocation" required>
                                     </div>
-
-
+                                </div>
+                            </div>
+                            <div class="row">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             Section Tracks
+                                            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#trackModal">Add Track</button>
                                         </div>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table class="table" id="track_queue">
                                                     <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>ID</th>
                                                         <th>Track Title</th>
                                                         <th>Track Description</th>
-                                                        <th>Coach</th>
+
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -103,7 +105,7 @@ include '../includes/_headers.php'
                                                         <td>1</td>
                                                         <td>Mark</td>
                                                         <td>Otto</td>
-                                                        <td>@mdo</td>
+
                                                     </tr>
 
                                                     </tbody>
@@ -113,11 +115,6 @@ include '../includes/_headers.php'
                                         </div>
                                         <!-- /.panel-body -->
                                     </div>
-
-
-
-                                </div>
-
 
                             </div>
                             <div class="col-md-16">
@@ -139,9 +136,14 @@ include '../includes/_headers.php'
 </div>
 <!-- /#page-wrapper -->
 
-</div>
+
 
 <?php
-include '../includes/_footer.php'
+
+include '../includes/_footer_tables.php';
+include 'trackModal.php';
 ?>
+</body>
+
+</html>
 

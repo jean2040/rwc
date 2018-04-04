@@ -6,11 +6,11 @@
  * Time: 9:42 PM
  */
 
-$sections = getAll('section',null,null,null);
+$tracks = getAll('track',null,null,null);
 
 ?>
 
-<div class="modal fade in" id="sectionModal" tabindex="-1" role="dialog" aria-labelledby="sectionModal" aria-hidden="true" style="display: none; padding-right: 16px;">
+<div class="modal fade in" id="trackModal" tabindex="-1" role="dialog" aria-labelledby="trackModal" aria-hidden="true" style="display: none; padding-right: 16px;">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -21,28 +21,28 @@ $sections = getAll('section',null,null,null);
             <div class="modal-body" id="s_modalbody">
 
                 <div class="table-responsive">
-                    <table  id="sections" width="100%" class="table table-striped table-bordered table-hover">
+                    <table  id="tracks" width="100%" class="table table-striped table-bordered table-hover">
 
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Section Name</th>
-                            <th>Start Date</th>
-                            <th>Location</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Option</th>
 
                         </tr>
                         </thead>
                         <tbody>
 
                         <?php
-                        while ($section = $sections->fetch_assoc()) {
+                        while ($track = $tracks->fetch_assoc()) {
                             ?>
 
                             <tr>
-                                <td><?php echo $section['SectionID'] ?></td>
-                                <td><?php echo $section['SectionName'] ?></td>
-                                <td><?php echo $section['StartDate'] ?></td>
-                                <td><?php echo $section['Location'] ?></td>
+                                <td><?php echo $track['TrackID'] ?></td>
+                                <td><?php echo $track['Title'] ?></td>
+                                <td><?php echo $track['Description'] ?></td>
+                                <td><button class="btn btn-primary">Add</button></td>
 
                             </tr>
 
@@ -68,19 +68,21 @@ $sections = getAll('section',null,null,null);
 
 <script>
     $(document).ready(function() {
-        var table = $('#sections').DataTable({
+        var table = $('#tracks').DataTable({
             responsive: true,
             "scrollY":        "200px",
             "scrollCollapse": true,
             "paging":         false
         });
 // this function will get  info form database on click using ajax and then showing it to the modal
-        $('#sections tbody').on('click', 'tr', function () {
-            var data = table.row( this ).data();
+        $('#tracks tbody ').on('click', 'button', function () {
+            $(this).removeClass('btn-primary');
+            $(this).addClass('btn-warning');
+            var data = table.row( $(this).parents('tr') ).data();
             console.log(data);
-            $('#p_trackSection').text(data[1]);
-            $('#sectionID').val(data[0]);
-            $('#sectionModal').modal('toggle');
+            $('#track_queue tbody').append('<tr class="child"><td>'+data[0]+'</td><td>'+data[1]+'</td><td>'+data[2]+'</td></tr>');
+
+            //$('#trackModal').modal('toggle');
             //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
     });

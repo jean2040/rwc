@@ -42,7 +42,6 @@ $my_coaches2 = getAll2(array("logininfo.UserName", "rwccoach.*"),'rwccoach',"log
 
                                 <thead>
                                 <tr>
-
                                     <th>User Name</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
@@ -58,8 +57,7 @@ $my_coaches2 = getAll2(array("logininfo.UserName", "rwccoach.*"),'rwccoach',"log
                                     ?>
 
                                     <tr>
-
-                                        <td class="sorting_1" style="display:none"><?php echo $coach['UserName'] ?></td>
+                                        <td><?php echo $coach['UserName'] ?></td>
                                         <td><?php echo $coach['Firstname'] ?></td>
                                         <td><?php echo $coach['Lastname'] ?></td>
                                         <td><?php echo $coach['Email'] ?></td>
@@ -163,13 +161,13 @@ include '../includes/_footer_tables.php'
                 }
 
             ],
-            "columnDefs":[
+            /*"columnDefs":[
                 {
                     "targets":[0],
                     "visible": false,
                     "searchable":false
                 }
-            ]
+            ]*/
 
         });
 

@@ -145,7 +145,7 @@ if (isset($_POST["id"])){
 
 <?php
 include '../includes/_footer_tables.php';
-include 'sectionModal.php';
+include 'trackModal.php';
 ?>
 
 </body>
