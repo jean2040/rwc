@@ -46,6 +46,11 @@ include '../includes/_headers.php'
                                         )
                             );
 
+                        echo '<script type="text/javascript">
+                               
+                               window.location = "sectionreport.php"
+                          </script>';
+
                            $error = "success";
 
                     } else {
@@ -81,38 +86,7 @@ include '../includes/_headers.php'
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            Section Tracks
-                                            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#trackModal">Add Track</button>
-                                        </div>
-                                        <!-- /.panel-heading -->
-                                        <div class="panel-body">
-                                            <div class="table-responsive">
-                                                <table class="table" id="track_queue">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Track Title</th>
-                                                        <th>Track Description</th>
 
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-
-                                                    </tr>
-
-                                                    </tbody>
-                                                </table>
-                                                <input aria-hidden="true" hidden id="tbl_tracks">
-                                            </div>
-                                            <!-- /.table-responsive -->
-                                        </div>
-                                        <!-- /.panel-body -->
-                                    </div>
-                            </div>
                             <div class="col-md-16">
                                 <button id="btn_submit" class="btn btn-primary btn-block">Submit</button>
                                 <button type="reset" class="btn btn-warning btn-block">Reset</button>
