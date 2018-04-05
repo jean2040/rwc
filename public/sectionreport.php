@@ -32,13 +32,13 @@ $my_sections = getAll('section', null,null,null);
                         <table  id="sections" width="100%" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <!-- <th> ID</th> -->
+
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Location</th>
                                             <th>Start</th>
                                             <th>End</th>
-                                            <!-- <th>More...</th> -->
+                                            <th>More...</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -47,13 +47,17 @@ $my_sections = getAll('section', null,null,null);
                                             ?>
 
                                             <tr>
-                                                <!--<td class="sorting_1">?php echo $section['CoachID'] ?></td>-->
+
                                                 <td class="sorting_1"><?php echo $section['SectionID'] ?></td>
                                                 <td><?php echo $section['SectionName'] ?></td>
                                                 <td><?php echo $section['Location'] ?></td>
                                                 <td><?php echo $section['StartDate'] ?></td>
                                                 <td><?php echo $section['EndDate'] ?></td>
-                                                <!-- <td><button type="button" class="btn btn-info">Open</button></td> -->
+                                                <td><form method="post" action="sectionEdit.php">
+                                                        <input type="submit" class="btn btn-warning" name="action" value="Edit">
+                                                        <input type="hidden" name="id" value="<?php echo $section['SectionID']; ?>"/>
+
+                                                    </form></td>
                                             </tr>
 
                                             <?php

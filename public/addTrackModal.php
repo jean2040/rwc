@@ -21,7 +21,7 @@ $tracks = getAll('track',null,null,null);
             <div class="modal-body" id="s_modalbody">
 
                 <div class="table-responsive">
-                    <table  id="tracks" width="100%" class="table table-striped table-bordered table-hover">
+                    <table  id="tracks" width="100%" class="display table table-striped table-bordered table-hover">
 
                         <thead>
                         <tr>
@@ -74,16 +74,43 @@ $tracks = getAll('track',null,null,null);
             "scrollCollapse": true,
             "paging":         false
         });
+
+        var table2 = $('#tracks_queue').DataTable({
+            responsive: true,
+
+        });
+
 // this function will get  info form database on click using ajax and then showing it to the modal
         $('#tracks tbody ').on('click', 'button', function () {
             $(this).removeClass('btn-primary');
             $(this).addClass('btn-warning');
-            var data = table.row( $(this).parents('tr') ).data();
-            console.log(data);
-            $('#track_queue tbody').append('<tr class="child"><td>'+data[0]+'</td><td>'+data[1]+'</td><td>'+data[2]+'</td></tr>');
+            var dataT = table.row( $(this).parents('tr') ).data();
+            var sectionId = $('#sID').val();
+
+            console.log(sectionId);
+            $.ajax({
+                type: "POST",
+                url: "../php/addTrack.php",
+                data: { track_id: dataT[0],table:"trackhassection", section_id: sectionId},
+                dataType: "json",
+                success: function(data) {
+                    console.log(dataT);
+                    table2.row.add([
+                            dataT[0],dataT[1],dataT[2], '<form method="post" action="trackEdit.php">\n' +
+                        '                                                    <input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
+                        '                                                    <input type="hidden" name="id" value="1">\n' +
+                        '\n' +
+                        '                                                </form>']
+                    ).draw();
+                }});
+
+
+
+
 
             //$('#trackModal').modal('toggle');
             //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
-    });
+
+        });
 </script>

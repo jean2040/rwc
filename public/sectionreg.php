@@ -30,12 +30,12 @@ include '../includes/_headers.php'
                 <div class="panel panel-default">
 
                     <?php
+
                     //here we check that the required values have been set in the post
                     $form = checkFormParams(array("sName", "sStart", "sEnd", "sLocation"));
                     if($form["cnt"] == 4){
 
-
-                            //inserts values to the login table
+                     //inserts values to the login table
                            $id = insertFields("section",
                                 array("SectionName" => $form["sName"],
                                     "StartDate" => $form["sStart"],
@@ -46,16 +46,15 @@ include '../includes/_headers.php'
                                         )
                             );
 
-                            $error = "success";
+                           $error = "success";
 
                     } else {
                         $error = "";
                     }
                     ?>
 
-
                     <div class="panel-heading">
-                        Register Coach
+                        Register Section
                     </div>
                     <div class="panel-body">
                         <form role="form" method="POST" id="coachRegistration">
@@ -102,23 +101,20 @@ include '../includes/_headers.php'
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
 
                                                     </tr>
 
                                                     </tbody>
                                                 </table>
+                                                <input aria-hidden="true" hidden id="tbl_tracks">
                                             </div>
                                             <!-- /.table-responsive -->
                                         </div>
                                         <!-- /.panel-body -->
                                     </div>
-
                             </div>
                             <div class="col-md-16">
-                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                <button id="btn_submit" class="btn btn-primary btn-block">Submit</button>
                                 <button type="reset" class="btn btn-warning btn-block">Reset</button>
                             </div>
                         </form>
@@ -141,7 +137,7 @@ include '../includes/_headers.php'
 <?php
 
 include '../includes/_footer_tables.php';
-include 'trackModal.php';
+include 'addTrackModal.php';
 ?>
 </body>
 

@@ -86,6 +86,12 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
         $query .= " LEFT JOIN {$joinTable}";
     }
 
+
+    if(isset($joinID)){
+        $query .= " USING";
+        $query .= " ({$joinID})";
+    }
+
     if(isset($query_array)){
         $query .= " WHERE";
         $cnt=0;
@@ -99,11 +105,6 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
             }
             $cnt++;
         }
-    }
-
-    if(isset($joinID)){
-        $query .= " USING";
-        $query .= " ({$joinID})";
     }
 
     if(isset($sort_field)){

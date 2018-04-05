@@ -9,15 +9,15 @@ include '../php/dbUpdate.php';
  * $_POST["action"]) &&
  */
 //here we check that the required values have been set in the post
-$form = checkFormParams(array("trackTitle", "shortTitle", "trackDes"));
+$form = checkFormParams(array("sName", "sStart", "sEnd"));
 
 if($form["cnt"] == 3){
-    //inserts values to the TRACK table
-    updateById('track','TrackID',$_POST["id"],
-        array("Title" => $form["trackTitle"],
-            "ShortTitle" => $form["shortTitle"],
-            "Description" => $form["trackDes"],
-            "SectionID" => $_POST["sectionID"]
+    //inserts values to the Section table
+    updateById('section','SectionID',$_POST["id"],
+        array("SectionName" => $form["sName"],
+            "StartDate" => $form["sStart"],
+            "EndDate" => $form["sEnd"],
+            "Location" => $_POST["sLocation"]
         )
     );
     $error = "success";
@@ -28,8 +28,10 @@ else {
 //Check for ID and load the form with latest data.
 if (isset($_POST["id"])){
     $t_id = $_POST["id"];
-    $track = getById('track','TrackID',$_POST["id"]);
-    $section = getById('section','SectionID',$track["SectionID"]);
+
+    $section = getById('section','SectionID',$_POST["id"]);
+    $tracks = getById('trackhassection','SectionID',$_POST["id"]);
+    $my_tracks = getAll2(array('track.*','trackhassection.TrackId'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id),null,null);
     $coaches = getById('rwccoachteachtrack','TrackID',$_POST["id"]);
 }
 
@@ -45,9 +47,9 @@ if (isset($_POST["id"])){
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <i class="fa fa-road fa-fw">Tracks</i>
+                    <i class="fa fa-road fa-fw">Sections</i>
                     <i class="pull-right">
-                        <a href="../public/trackreport.php">
+                        <a href="../public/sectionreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">
                                 <i class="fa fa-times">
                                 </i>
@@ -63,7 +65,7 @@ if (isset($_POST["id"])){
         <div class="col-lg-8 col-lg-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Track Information
+                    Section Information
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -71,7 +73,7 @@ if (isset($_POST["id"])){
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#general" data-toggle="tab" aria-expanded="false">General</a>
                         </li>
-                        <li class=""><a href="#coaches" data-toggle="tab" aria-expanded="false">Coaches</a>
+                        <li class=""><a href="#coaches" data-toggle="tab" aria-expanded="false">Tracks</a>
                         </li>
                         <li class=""><a href="#students" data-toggle="tab" aria-expanded="true">Students</a>
                         </li>
@@ -81,27 +83,28 @@ if (isset($_POST["id"])){
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="general">
-                            <h4><?php echo $track['Title']; ?></h4>
+                            <h4><?php echo $section['SectionName']; ?></h4>
                             <form role="form" method="post">
-                                <input aria-hidden="true" hidden name="id" value="<?php echo $t_id; ?>">
+                                <input aria-hidden="true" hidden id="sID" name="id" value="<?php echo $t_id; ?>">
                                 <div class="form-group">
                                     <label for="trackTitle">Track Title</label>
-                                    <input class="form-control" id="trackTitle" name="trackTitle" required value="<?php echo $track['Title']; ?>">
+                                    <input class="form-control" id="sName" name="sName" required value="<?php echo $section['SectionName']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="shortTitle"  >Short Title</label>
-                                    <input class="form-control" id="shortTitle" name="shortTitle" type="text" value="<?php echo $track['ShortTitle']; ?>">
+                                    <label for="sStart">Start Date</label>
+                                    <input class="form-control" id="sStart" name="sStart" type="date" required value="<?php echo $section['StartDate']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="trackDescrip">Description</label>
-                                    <input class="form-control" id="trackDescrip" name="trackDes" type="text" required value="<?php echo $track['Description']; ?>">
+                                    <label for="sEnd">End Date</label>
+                                    <input class="form-control" id="sEnd" name="sEnd" type="date" required value="<?php echo $section['EndDate']; ?>">
                                 </div>
+
                                 <div class="form-group">
-                                    <label>Section</label>
-                                    <p id="p_trackSection"><?php echo $section['SectionName']; ?></p>
-                                    <input type="text" aria-hidden="true" hidden id="sectionID" name="sectionID" value="<?php echo $section['SectionID']; ?>">
-                                    <input type="button" value="Change Section" class="btn btn-primary" data-toggle="modal" data-target="#sectionModal">
+                                    <label for="sLocation">Location</label>
+                                    <input class="form-control" id="sLocation" name="sLocation" required value="<?php echo $section['Location']; ?>">
                                 </div>
+
+
 
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -111,16 +114,58 @@ if (isset($_POST["id"])){
                             </form>
                         </div>
                         <div class="tab-pane fade" id="coaches">
-                            <h4>Track Coaches</h4>
+
+                                <h4>Section Tracks</h4>
                             <?php
-                            if (count($coaches)== 0){
-                                echo "<p> No Coaches Assigned, please add one </p>";
-                                echo '<button  type="button" class="btn btn-primary">Add Coach </button> ';
+                            if (count($tracks)== 0){
+                                echo "<p> No Tracks Assigned, please add one </p>";
+                                echo ' ';
 
                             }else{
-                                echo "coaches list";
+
                             }
                             ?>
+                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#trackModal">Add Track </button>
+                            <br>
+                            <br>
+                            <div class="table-responsive">
+                                <table  id="tracks_queue" width="100%" class="display table table-striped table-bordered table-hover">
+
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <?php
+                                    while ($track = $my_tracks->fetch_assoc()) {
+                                        ?>
+
+                                        <tr>
+                                            <td><?php echo $track['TrackID'] ?></td>
+                                            <td class="sorting_1"><?php echo $track['Title'] ?></td>
+                                            <td><?php echo $track['Description'] ?></td>
+                                            <td> <form method="post" action="trackEdit.php">
+                                                    <input type="submit" class="btn btn-warning" name="action" value="Edit">
+                                                    <input type="hidden" name="id" value="<?php echo $track['TrackID']; ?>"/>
+
+                                                </form></td>
+
+                                        </tr>
+
+                                        <?php
+                                    }
+                                    ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
 
                         </div>
                         <div class="tab-pane fade" id="students">
@@ -145,7 +190,7 @@ if (isset($_POST["id"])){
 
 <?php
 include '../includes/_footer_tables.php';
-include 'trackModal.php';
+include 'addTrackModal.php';
 ?>
 
 </body>
