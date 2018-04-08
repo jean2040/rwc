@@ -97,10 +97,9 @@ $tracks = getAll('track',null,null,null);
                     console.log(dataT);
                     table2.row.add([
                             dataT[0],dataT[1],dataT[2], '<form method="post" action="trackEdit.php">\n' +
-                        '                                                    <input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
-                        '                                                    <input type="hidden" name="id" value="1">\n' +
-                        '\n' +
-                        '                                                </form>']
+                                                        '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
+                                                        '<input type="hidden" name="id" value="'+dataT[0]+'">\n' +
+                                                        '</form>']
                     ).draw();
                 }});
 

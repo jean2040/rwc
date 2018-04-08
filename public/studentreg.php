@@ -38,9 +38,7 @@ include '../includes/_headers.php'
                         // if the user exists send error
                         if(isset($result)){
                             $error = "duplicate";
-                            echo "<div class=\"alert alert-danger\">
-                                Oops, The User Already exists.
-                            </div>";
+                            echo "<div class=\"alert alert-danger\">Oops, The User Already exists.</div>";
                         } else {
                             // Generate a random ID with "co" as prefix.
                             $newID = getID("st");
@@ -59,8 +57,8 @@ include '../includes/_headers.php'
                             insertFields("students",
                                 array(
                                     "StudentID" => $newID,
-                                    "FirstName" => $form["fName"],
-                                    "LastName" => $form["lName"],
+                                    "FirstName" => $_POST["fName"],
+                                    "LastName" => $_POST["lName"],
                                     "Email" => $_POST['email'],
                                     "Phone" => $_POST['phone'],
                                     "Gender" => $_POST['gender'],
@@ -72,6 +70,7 @@ include '../includes/_headers.php'
                             );
 
                             $error = "success";
+                            echo "<div class=\"alert alert-success\">User Has been added</div>";
                         }
                     } else {
                         $error = "";
@@ -88,31 +87,31 @@ include '../includes/_headers.php'
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <labuel>User Name</labuel>
-                                        <input class="form-control" id="uName" name="uName" required minlength="4">
+                                        <label>User Name</label>
+                                        <input class="form-control" id="uName" name="uName" required minlength="4" value="<?php echo isset($_POST["uName"]) ? $_POST["uName"] : ''; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input class="form-control" id="uPass" name="uPass" type="password" required>
+                                        <input class="form-control" id="uPass" name="uPass" type="password" required value="<?php echo isset($_POST["uPass"]) ? $_POST["uPass"] : ''; ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>First Name</label>
-                                        <input class="form-control" id="fName" name="fName" required>
+                                        <input class="form-control" id="fName" name="fName" required value="<?php echo isset($_POST["fName"]) ? $_POST["fName"] : ''; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
-                                        <input class="form-control" id="lName" name="lName" required>
+                                        <input class="form-control" id="lName" name="lName" required value="<?php echo isset($_POST["lName"]) ? $_POST["lName"] : ''; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input class="form-control" id="email" name="email">
+                                        <input class="form-control" id="email" name="email" value="<?php echo isset($_POST["email"]) ? $_POST["email"] : ''; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
-                                        <input class="form-control" type="tel" id="phone" name="phone">
+                                        <input class="form-control" type="tel" id="phone" name="phone" value="<?php echo isset($_POST["phone"]) ? $_POST["phone"] : ''; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="gender">Gender</label>

@@ -46,10 +46,7 @@ include '../includes/_headers.php'
                                         )
                             );
 
-                        echo '<script type="text/javascript">
-                               
-                               window.location = "sectionreport.php"
-                          </script>';
+                        echo '<script type="text/javascript">window.location = "sectionreport.php";</script>';
 
                            $error = "success";
 

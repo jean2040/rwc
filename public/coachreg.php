@@ -91,7 +91,7 @@ include '../includes/_headers.php'
                                 <div class="col-lg-6">
 
                                     <div class="form-group">
-                                        <labuel>User Name</labuel>
+                                        <label>User Name</label>
                                         <input class="form-control" id="uName" name="uName" required minlength="4">
                                     </div>
                                     <div class="form-group">
