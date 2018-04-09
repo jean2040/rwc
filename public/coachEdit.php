@@ -46,6 +46,7 @@ if (isset($_POST['delete'])){
 if (isset($_POST["id"])){
     $c_id = $_POST["id"];
     $coach = getById('rwccoach','CoachID',$_POST["id"]);
+
     if (isset($coach["LanguageSkill"])){
         $coach["LanguageSkill"] = unserialize($coach["LanguageSkill"]);
     }
@@ -115,10 +116,11 @@ if (isset($_POST["id"])){
                                     <input class="form-control" type="tel" name="phone" value="<?php echo $coach['Phone']; ?>">
                                 </div>
                                 <div class="form-group">
+
                                     <label>Gender</label>
                                     <select name="gender" class="form-control">
-                                        <option value="male" <?php if($coach['gender'] == "male") echo "selected";?>>Male</option>
-                                        <option value="female" <?php if($coach['gender'] == "female") echo "selected";?>>Female</option>
+                                        <option value="M" <?php if($coach['Gender'] == "M"){echo "selected";}?>>Male</option>
+                                        <option value="F" <?php if($coach['Gender'] == "F"){ echo "selected";}?>>Female</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

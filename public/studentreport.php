@@ -66,8 +66,8 @@ $my_students = getAll('students', null,null,null);
 
                                     <tr>
                                         <td class="sorting_1"><?php echo $student['StudentID'] ?></td>
-                                        <td><?php echo $student['FirstName'] ?></td>
-                                        <td><?php echo $student['LastName'] ?></td>
+                                        <td><?php echo $student['Firstname'] ?></td>
+                                        <td><?php echo $student['Lastname'] ?></td>
                                         <td><?php echo $student['Phone'] ?></td>
                                         <td><?php echo $student['Email'] ?></td>
                                         <td><?php echo $student['Gender'] ?></td>

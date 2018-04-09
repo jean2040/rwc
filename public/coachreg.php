@@ -44,7 +44,7 @@ include '../includes/_headers.php'
                         } else {
                             // Generate a random ID with "co" as prefix.
                             $newID = getID("co");
-                            echo $newID;
+                            //echo $newID;
                             //inserts values to the login table
                             insertFields("logininfo",
                                 array("UserName" => $form["uName"],
@@ -74,6 +74,8 @@ include '../includes/_headers.php'
                             );
 
                             $error = "success";
+                            header("Location: coachreport.php");
+                            die();
                         }
                     } else {
                         $error = "";
@@ -124,8 +126,8 @@ include '../includes/_headers.php'
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <select name="gender" name="gender" class="form-control">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

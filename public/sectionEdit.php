@@ -32,6 +32,7 @@ if (isset($_POST["id"])){
     $section = getById('section','SectionID',$_POST["id"]);
     $tracks = getById('trackhassection','SectionID',$_POST["id"]);
     $my_tracks = getAll2(array('track.*','trackhassection.TrackId'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id),null,null);
+    $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackID' => $t_id),null,null);
     $coaches = getById('rwccoachteachtrack','TrackID',$_POST["id"]);
 }
 
@@ -116,15 +117,7 @@ if (isset($_POST["id"])){
                         <div class="tab-pane fade" id="coaches">
 
                                 <h4>Section Tracks</h4>
-                            <?php
-                            if (count($tracks)== 0){
-                                echo "<p> No Tracks Assigned, please add one </p>";
-                                echo ' ';
 
-                            }else{
-
-                            }
-                            ?>
                             <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#trackModal">Add Track </button>
                             <br>
                             <br>
@@ -170,7 +163,46 @@ if (isset($_POST["id"])){
                         </div>
                         <div class="tab-pane fade" id="students">
                             <h4>Students</h4>
-                            <p> List of students, add students</p>
+                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">Add Student </button>
+                            <br>
+                            <br>
+                            <div class="table-responsive">
+                                <table  id="students_queue" width="100%" class="display table table-striped table-bordered table-hover">
+
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <?php
+                                    while ($student = $my_students->fetch_assoc()) {
+                                        ?>
+
+                                        <tr>
+                                            <td><?php echo $student['Firstname'] ?></td>
+                                            <td class="sorting_1"><?php echo $student['Lastname'] ?></td>
+                                            <td><?php echo $student['Email'] ?></td>
+                                            <td> <form method="post" action="studentEdit.php">
+                                                    <input type="submit" class="btn btn-warning" name="action" value="Edit">
+                                                    <input type="hidden" name="id" value="<?php echo $student['StudentID']; ?>"/>
+
+                                                </form></td>
+
+                                        </tr>
+
+                                        <?php
+                                    }
+                                    ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                     </div>
@@ -191,6 +223,7 @@ if (isset($_POST["id"])){
 <?php
 include '../includes/_footer_tables.php';
 include 'addTrackModal.php';
+include 'addStudentModal.php';
 ?>
 
 </body>

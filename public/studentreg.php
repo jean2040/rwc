@@ -115,9 +115,9 @@ include '../includes/_headers.php'
                                     </div>
                                     <div class="form-group">
                                         <label for="gender">Gender</label>
-                                        <select name="gender" id="gender" name="gender" class="form-control">
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                        <select id="gender" name="gender" class="form-control">
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

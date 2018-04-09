@@ -19,7 +19,7 @@ function updateById($table, $column, $id, $fields_array){
         $query .=	$key . "= '" . mysqli_real_escape_string($connection, $value) ."'";
         $cnt++;
     }
-    $query .= " WHERE {$column} = {$id}";
+    $query .= " WHERE {$column} = '{$id}'";
 
     //echo $query;
 
