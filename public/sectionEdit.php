@@ -6,7 +6,7 @@ include '../php/dbUpdate.php';
  * User: JeanPaul
  * Date: 3/22/2018
  * Time: 7:39 PM
- * $_POST["action"]) &&
+ * Description: This page will show section Details and allow an Admin to Add Tracks to the Section
  */
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("sName", "sStart", "sEnd"));
@@ -31,9 +31,8 @@ if (isset($_POST["id"])){
 
     $section = getById('section','SectionID',$_POST["id"]);
     $tracks = getById('trackhassection','SectionID',$_POST["id"]);
-    $my_tracks = getAll2(array('track.*','trackhassection.TrackId'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id),null,null);
-    $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackID' => $t_id),null,null);
-    $coaches = getById('rwccoachteachtrack','TrackID',$_POST["id"]);
+    $my_tracks = getAll2(array('track.*','trackhassection.TrackSectionID'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id),null,null);
+
 }
 
 ?>
@@ -76,8 +75,7 @@ if (isset($_POST["id"])){
                         </li>
                         <li class=""><a href="#coaches" data-toggle="tab" aria-expanded="false">Tracks</a>
                         </li>
-                        <li class=""><a href="#students" data-toggle="tab" aria-expanded="true">Students</a>
-                        </li>
+
 
                     </ul>
 
@@ -139,12 +137,12 @@ if (isset($_POST["id"])){
                                         ?>
 
                                         <tr>
-                                            <td><?php echo $track['TrackID'] ?></td>
+                                            <td><?php echo $track['TrackSectionID'] ?></td>
                                             <td class="sorting_1"><?php echo $track['Title'] ?></td>
                                             <td><?php echo $track['Description'] ?></td>
-                                            <td> <form method="post" action="trackEdit.php">
+                                            <td> <form method="post" action="track_section_edit.php">
                                                     <input type="submit" class="btn btn-warning" name="action" value="Edit">
-                                                    <input type="hidden" name="id" value="<?php echo $track['TrackID']; ?>"/>
+                                                    <input type="hidden" name="id" value="<?php echo $track['TrackSectionID']; ?>"/>
 
                                                 </form></td>
 
@@ -161,49 +159,7 @@ if (isset($_POST["id"])){
 
 
                         </div>
-                        <div class="tab-pane fade" id="students">
-                            <h4>Students</h4>
-                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentModal">Add Student </button>
-                            <br>
-                            <br>
-                            <div class="table-responsive">
-                                <table  id="students_queue" width="100%" class="display table table-striped table-bordered table-hover">
 
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Details</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php
-                                    while ($student = $my_students->fetch_assoc()) {
-                                        ?>
-
-                                        <tr>
-                                            <td><?php echo $student['Firstname'] ?></td>
-                                            <td class="sorting_1"><?php echo $student['Lastname'] ?></td>
-                                            <td><?php echo $student['Email'] ?></td>
-                                            <td> <form method="post" action="studentEdit.php">
-                                                    <input type="submit" class="btn btn-warning" name="action" value="Edit">
-                                                    <input type="hidden" name="id" value="<?php echo $student['StudentID']; ?>"/>
-
-                                                </form></td>
-
-                                        </tr>
-
-                                        <?php
-                                    }
-                                    ?>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

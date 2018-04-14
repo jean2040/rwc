@@ -23,6 +23,26 @@ function getById($table, $column, $id) {
     return $record_set->fetch_array(MYSQLI_ASSOC);
 }
 
+// -- Get a particular table record by column value
+function getByIdJoin($table1, $table2, $joinID, $column, $id) {
+    global $connection;
+
+    $query  = "SELECT ";
+    $query .= "{$table1}.* ,";
+    $query .= "{$table2}.* ";
+    $query .= " FROM {$table1}";
+    $query .= " JOIN {$table2}";
+    $query .= " USING ({$joinID})";
+    $query .= " WHERE {$column} = '{$id}'";
+    $query .= " Limit 1";
+
+    //echo $query;
+
+    $record_set = mysqli_query($connection, $query);
+    confirm_query($record_set);
+    return $record_set->fetch_array(MYSQLI_ASSOC);
+}
+
 // -- Get all table records
 // @param: table name, query_array (associative array of criteria: column => value), sort field and sort order
 function getAll($table, $query_array, $sort_field, $sort_order) {

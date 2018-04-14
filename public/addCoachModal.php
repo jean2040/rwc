@@ -1,50 +1,56 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: JeanPaul
- * Date: 4/08/2018
- * Time: 9:27 PM
+ * User: jeanp
+ * Date: 4/14/2018
+ * Time: 8:40 AM
+ * This File is the Modal to Add Coaches to the DB.
+ * It uses AJAx to connect to the DB.
  */
 
-$students = getAll('students',null,null,null);
+$coaches = getAll('rwccoach',null,null,null);
 
 ?>
 
-<div class="modal fade in" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true" style="display: none; padding-right: 16px;">
+<div class="modal fade in" id="coachModal" tabindex="-1" role="dialog" aria-labelledby="coachModal" aria-hidden="true" style="display: none; padding-right: 16px;">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="s_modalTitle">Click on a Student to add it</h4>
+                <h4 class="modal-title" id="s_modalTitle">Click on a Coach to Select it</h4>
             </div>
             <div class="modal-body" id="s_modalbody">
 
                 <div class="table-responsive">
-                    <table  id="t_students" width="100%" class="display table table-striped table-bordered table-hover">
+                    <table  id="t_coaches" width="100%" class="display table table-striped table-bordered table-hover">
 
                         <thead>
                         <tr>
+                            <th>Option</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
-                            <th>Option</th>
+                            <th>Language Skill</th>
+
 
                         </tr>
                         </thead>
                         <tbody>
 
                         <?php
-                        while ($student = $students->fetch_assoc()) {
+                        while ($coach = $coaches->fetch_assoc()) {
                             ?>
 
                             <tr>
-                                <td><?php echo $student['StudentID'] ?></td>
-                                <td><?php echo $student['Firstname'] ?></td>
-                                <td><?php echo $student['Lastname'] ?></td>
-                                <td><?php echo $student['Email'] ?></td>
                                 <td><button class="btn btn-primary">Add</button></td>
+                                <td><?php echo $coach['CoachID'] ?></td>
+                                <td><?php echo $coach['Firstname'] ?></td>
+                                <td><?php echo $coach['Lastname'] ?></td>
+                                <td><?php echo $coach['Email'] ?></td>
+                                <td><?php echo print_r(unserialize($coach['LanguageSkill'])) ?></td>
+
 
                             </tr>
                             <?php
@@ -67,21 +73,21 @@ $students = getAll('students',null,null,null);
 
 <script>
     $(document).ready(function() {
-        var table = $('#t_students').DataTable({
+        var table = $('#t_coaches').DataTable({
             responsive: true,
             "scrollY":        "200px",
             "scrollCollapse": true,
-            "paging":         false,
+            "paging": false,
             "columnDefs": [
                 {
-                    "targets": [ 0 ],
+                    "targets": [ 1 ],
                     "visible": false
 
                 }
-            ]
+                ]
         });
 
-        var table2 = $('#students_queue').DataTable({
+        var table2 = $('#coaches_queue').DataTable({
             responsive: true,
             "columnDefs": [
                 {
@@ -94,7 +100,7 @@ $students = getAll('students',null,null,null);
         });
 
 // this function will get  info form database on click using ajax and then showing it to the modal
-        $('#t_students tbody ').on('click', 'button', function () {
+        $('#t_coaches tbody ').on('click', 'button', function () {
             $(this).removeClass('btn-primary');
             $(this).addClass('btn-warning');
             var dataT = table.row( $(this).parents('tr') ).data();
@@ -103,15 +109,15 @@ $students = getAll('students',null,null,null);
             console.log(sectionId);
             $.ajax({
                 type: "POST",
-                url: "../php/ajax/addStudent.php",
-                data: { student_id: dataT[0],table:"studenttaketrack", section_id: sectionId},
+                url: "../php/ajax/addCoach.php",
+                data: { coach_id: dataT[1],table:"rwccoachteachtrack", section_id: sectionId},
                 dataType: "json",
                 success: function(data) {
-                    console.log(dataT);
+                    console.log(data);
                     table2.row.add([
-                        dataT[0],dataT[1],dataT[2], '<form method="post" action="studentEdit.php">\n' +
+                        dataT[1],dataT[2],dataT[3], '<form method="post" action="coachEdit.php">\n' +
                         '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
-                        '<input type="hidden" name="id" value="'+dataT[0]+'">\n' +
+                        '<input type="hidden" name="id" value="'+dataT[1]+'">\n' +
                         '</form>']
                     ).draw();
                 }});

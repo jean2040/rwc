@@ -94,11 +94,11 @@ $tracks = getAll('track',null,null,null);
                 data: { track_id: dataT[0],table:"trackhassection", section_id: sectionId},
                 dataType: "json",
                 success: function(data) {
-                    console.log(dataT);
+                    //console.log(data);
                     table2.row.add([
-                            dataT[0],dataT[1],dataT[2], '<form method="post" action="trackEdit.php">\n' +
+                            data,dataT[1],dataT[2], '<form method="post" action="trackEdit.php">\n' +
                                                         '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
-                                                        '<input type="hidden" name="id" value="'+dataT[0]+'">\n' +
+                                                        '<input type="hidden" name="id" value="'+data+'">\n' +
                                                         '</form>']
                     ).draw();
                 }});
