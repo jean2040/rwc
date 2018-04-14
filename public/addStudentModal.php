@@ -82,14 +82,8 @@ $students = getAll('students',null,null,null);
         });
 
         var table2 = $('#students_queue').DataTable({
-            responsive: true,
-            "columnDefs": [
-                {
-                    "targets": [ 0 ],
-                    "visible": false
+            responsive: true
 
-                }
-            ]
 
         });
 
@@ -109,7 +103,7 @@ $students = getAll('students',null,null,null);
                 success: function(data) {
                     console.log(dataT);
                     table2.row.add([
-                        dataT[0],dataT[1],dataT[2], '<form method="post" action="studentEdit.php">\n' +
+                        dataT[1],dataT[2],dataT[3], '<form method="post" action="studentEdit.php">\n' +
                         '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
                         '<input type="hidden" name="id" value="'+dataT[0]+'">\n' +
                         '</form>']

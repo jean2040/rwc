@@ -89,13 +89,6 @@ $coaches = getAll('rwccoach',null,null,null);
 
         var table2 = $('#coaches_queue').DataTable({
             responsive: true,
-            "columnDefs": [
-                {
-                    "targets": [ 0 ],
-                    "visible": false
-
-                }
-            ]
 
         });
 
@@ -105,17 +98,16 @@ $coaches = getAll('rwccoach',null,null,null);
             $(this).addClass('btn-warning');
             var dataT = table.row( $(this).parents('tr') ).data();
             var sectionId = $('#sID').val();
-            console.log(dataT);
-            console.log(sectionId);
+            //console.log(dataT);
+            //console.log(sectionId);
             $.ajax({
                 type: "POST",
                 url: "../php/ajax/addCoach.php",
                 data: { coach_id: dataT[1],table:"rwccoachteachtrack", section_id: sectionId},
                 dataType: "json",
                 success: function(data) {
-                    console.log(data);
-                    table2.row.add([
-                        dataT[1],dataT[2],dataT[3], '<form method="post" action="coachEdit.php">\n' +
+                        table2.row.add([
+                        dataT[2],dataT[3],dataT[4], '<form method="post" action="coachEdit.php">\n' +
                         '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
                         '<input type="hidden" name="id" value="'+dataT[1]+'">\n' +
                         '</form>']

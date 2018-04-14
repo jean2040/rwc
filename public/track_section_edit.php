@@ -33,7 +33,7 @@ if (isset($_POST["id"])){
     //$section = getById('section','SectionID',$_POST["id"]);
     $my_track = getByIdJoin('trackhassection','track','TrackID','TrackSectionID',$t_id);
     $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackID' => $t_id),null,null);
-    $coaches = getAll('rwccoachteachtrack',null,null,null);
+    $coaches = getAll2(array('rwccoachteachtrack.*', 'rwccoach.*'),'rwccoachteachtrack','rwccoach','CoachID',array('rwccoachteachtrack.TrackID' => $t_id),null,null);
 }
 
 ?>
@@ -100,9 +100,9 @@ if (isset($_POST["id"])){
 
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
+                                        <th>Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
                                         <th>Details</th>
                                     </tr>
                                     </thead>
@@ -113,9 +113,9 @@ if (isset($_POST["id"])){
                                         ?>
 
                                         <tr>
-                                            <td><?php echo $coach['CoachID'] ?></td>
-                                            <td ><?php echo $coach['TrackID'] ?></td>
-                                            <td><?php echo $coach['TrackID'] ?></td>
+                                            <td><?php echo $coach['Firstname'] ?></td>
+                                            <td ><?php echo $coach['Lastname'] ?></td>
+                                            <td><?php echo $coach['Email'] ?></td>
                                             <td> <form method="post">
                                                     <input type="submit" class="btn btn-warning" name="action" value="Remove">
                                                     <input type="hidden" name="id" value="<?php echo $coach['CoachID']; ?>"/>
