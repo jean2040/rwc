@@ -88,7 +88,7 @@ $coaches = getAll('rwccoach',null,null,null);
         });
 
         var table2 = $('#coaches_queue').DataTable({
-            responsive: true,
+            responsive: true
 
         });
 

@@ -136,7 +136,7 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
         $query .= " {$sort_order}";
     }
 
-    echo $query;
+    //echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
