@@ -11,7 +11,7 @@ include '../includes/_headers.php'
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <i class="fa fa-users fa-fw"> Students</i>
+                    <i class="fa fa-graduation-cap fa-fw">Students</i>
                     <i class="pull-right">
                         <a href="../public/studentreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">
