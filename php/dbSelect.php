@@ -149,7 +149,7 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
 function getCount($table, $query_array) {
     global $connection;
 
-    $query  = "SELECT count(*) as cnt";
+    $query  = "SELECT count(*) AS cnt";
     $query .= " FROM {$table}";
     if(isset($query_array)){
         $query .= " WHERE";
@@ -166,7 +166,7 @@ function getCount($table, $query_array) {
         }
     }
 
-
+	//echo $query;
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
     $result = $record_set->fetch_array(MYSQLI_ASSOC);

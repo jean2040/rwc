@@ -11,9 +11,9 @@ include '../includes/_headers.php'
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <i class="fa fa-users fa-fw">Sections</i>
+                    <i class="fa fa-users fa-fw"> Sections</i>
                     <i class="pull-right">
-                        <a href="../public/coachreport.php">
+                        <a href="../public/sectionreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">
                                 <i class="fa fa-times">
                                 </i>
