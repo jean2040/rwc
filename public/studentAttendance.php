@@ -11,7 +11,7 @@ include '../includes/_headers.php';
 $TrackSectionID = 1;
 // get students data from db
 
-$my_students = getAll2(array('studenttaketrack.*','students.Firstname', 'students.Lastname'),'studenttaketrack' ,'students','StudentID',array('TrackSectionID'=> $TrackSectionID),null,null);
+$my_students = getAll2(array('studentattendance.*','students.Firstname', 'students.Lastname'),'studentattendance' ,'students','StudentID',array('TrackSectionID'=> $TrackSectionID),null,null);
 
 ?>
 

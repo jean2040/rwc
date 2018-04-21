@@ -12,9 +12,13 @@ include 'connection.php';
 include 'dbSelect.php';
 include 'dbInsert.php';
 $trackSection = $_POST['track_section'];
-echo 'ver3';
+echo 'ver4';
 
 $students = getAll('studenttaketrack',array('TrackSectionID'=> $trackSection),null,null);
+
+if (!$student){
+    echo "WTH";
+}
 
 foreach ( $students as $student ){
 
