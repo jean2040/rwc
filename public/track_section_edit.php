@@ -32,8 +32,8 @@ if (isset($_POST["id"])){
 
     //$section = getById('section','SectionID',$_POST["id"]);
     $my_track = getByIdJoin('trackhassection','track','TrackID','TrackSectionID',$t_id);
-    $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackID' => $t_id),null,null);
-    $coaches = getAll2(array('rwccoachteachtrack.*', 'rwccoach.*'),'rwccoachteachtrack','rwccoach','CoachID',array('rwccoachteachtrack.TrackID' => $t_id),null,null);
+    $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackSectionID' => $t_id),null,null);
+    $coaches = getAll2(array('rwccoachteachtrack.*', 'rwccoach.*'),'rwccoachteachtrack','rwccoach','CoachID',array('rwccoachteachtrack.TrackSectionID' => $t_id),null,null);
 }
 
 ?>
@@ -85,7 +85,8 @@ if (isset($_POST["id"])){
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="general">
                             <input aria-hidden="true" hidden id="sID" name="id" value="<?php echo $t_id; ?>">
-                            <h4><?php echo $my_track['Title']; ?></h4>
+                            <input aria-hidden="true" hidden id="trackID" name="id" value="<?php echo $my_track['TrackID']; ?>">
+                            <h4><?php echo $my_track['TrackID'] . $my_track['Title']; ?></h4>
 
                         </div>
                         <div class="tab-pane fade" id="coaches">

@@ -92,13 +92,13 @@ $students = getAll('students',null,null,null);
             $(this).removeClass('btn-primary');
             $(this).addClass('btn-warning');
             var dataT = table.row( $(this).parents('tr') ).data();
-            var sectionId = $('#sID').val();
-            console.log(dataT);
-            console.log(sectionId);
+            var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
+            var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
+            console.log(track_sectionId);
             $.ajax({
                 type: "POST",
                 url: "../php/ajax/addStudent.php",
-                data: { student_id: dataT[0],table:"studenttaketrack", section_id: sectionId},
+                data: { student_id: dataT[0],table:"studenttaketrack", track_sectionId: track_sectionId, trackId:trackId},
                 dataType: "json",
                 success: function(data) {
                     console.log(dataT);

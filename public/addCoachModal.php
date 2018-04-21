@@ -97,13 +97,14 @@ $coaches = getAll('rwccoach',null,null,null);
             $(this).removeClass('btn-primary');
             $(this).addClass('btn-warning');
             var dataT = table.row( $(this).parents('tr') ).data();
-            var sectionId = $('#sID').val();
+            var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
+            var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
             //console.log(dataT);
             //console.log(sectionId);
             $.ajax({
                 type: "POST",
                 url: "../php/ajax/addCoach.php",
-                data: { coach_id: dataT[1],table:"rwccoachteachtrack", section_id: sectionId},
+                data: { coach_id: dataT[1],table:"rwccoachteachtrack", track_section_id: track_sectionId, trackId: trackId},
                 dataType: "json",
                 success: function(data) {
                         table2.row.add([

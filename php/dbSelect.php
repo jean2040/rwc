@@ -36,7 +36,7 @@ function getByIdJoin($table1, $table2, $joinID, $column, $id) {
     $query .= " WHERE {$column} = '{$id}'";
     $query .= " Limit 1";
 
-    //echo $query;
+    echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
@@ -74,7 +74,7 @@ function getAll($table, $query_array, $sort_field, $sort_order) {
         $query .= " {$sort_order}";
     }
 
-    //echo $query;
+    echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
@@ -171,5 +171,46 @@ function getCount($table, $query_array) {
     confirm_query($record_set);
     $result = $record_set->fetch_array(MYSQLI_ASSOC);
     return $result["cnt"];
+}
+
+// this Function call will get the values from two tables using a common joindID
+// joindID must be identical in both tables
+function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID, $group_field) {
+    global $connection;
+
+    $query  = "SELECT COUNT({$counter}),";
+    if(isset($fields_array)){
+        $h = 0;
+
+        foreach ($fields_array as $field){
+            if($h > 0){
+                $query .= " ,";
+            }
+            $query .= "{$field} ";
+            $h++;
+        }
+    }
+    $query .= " FROM {$table}";
+
+    if(isset($joinTable)){
+        $query .= " JOIN {$joinTable}";
+    }
+
+
+    if(isset($joinID)){
+        $query .= " USING";
+        $query .= " ({$joinID})";
+    }
+
+    if(isset($sort_field)){
+        $query .= " GROUP BY";
+        $query .= " {$group_field}";
+    }
+
+    echo $query;
+
+    $record_set = mysqli_query($connection, $query);
+    confirm_query($record_set);
+    return $record_set;
 }
 

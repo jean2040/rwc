@@ -12,12 +12,13 @@ include '../connection.php';
 include '../dbInsert.php';
 $table = $_POST['table'];
 $coach_id = $_POST['coach_id'];
-$section_id = $_POST['section_id'];
-
+$track_section_id = $_POST['track_section_id'];
+$trackID = $_POST['trackId'];
 
 $c_student = insertFields($table, array(
     "CoachID" => $coach_id,
-    "TrackID" => $section_id,
+    "TrackSectionID" => $track_section_id,
+    "TrackID" => $trackID,
     "CreationTime" => date("Y-m-d H:i:s"),
     "DeleteFlag" => "N"
 ));
