@@ -17,6 +17,6 @@ $c_track = insertFields($table, array(
         "SectionID" => $section_id,
         "CreationTime" => date("Y-m-d H:i:s"),
         "DeleteFlag" => "N"
-));
+),null);
 
 echo json_encode($c_track);

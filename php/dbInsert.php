@@ -52,10 +52,9 @@ function insertFields($table, $fields_array, $ignore) {
     $query .= $values;
     $query .= ")";
     //
-    echo $query;
+    //echo $query;
 
     $record_set = mysqli_query($connection, $query);
-    echo $record_set;
     confirm_query($record_set);
 
     return $connection->insert_id;

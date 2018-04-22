@@ -21,6 +21,6 @@ $c_student = insertFields($table, array(
     "TrackID" => $trackID,
     "CreationTime" => date("Y-m-d H:i:s"),
     "DeleteFlag" => "N"
-));
+),null);
 
 echo json_encode($c_student);

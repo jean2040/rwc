@@ -68,7 +68,11 @@ $my_attendances = getCountGroupBy('StudentID',array('Date','track.Title'),'stude
                                         <td><?php echo $attend['Date'] ?></td>
                                         <td><?php echo $attend['Title'] ?></td>
                                         <td><?php echo $attend['COUNT(StudentID)'] ?></td>
-                                        <td><button class="btn btn-success">View</button></td>
+                                        <td><form method="post" action="studentAttendance.php">
+                                                <input name="date" hidden aria-hidden="true" value="<?php echo $attend['Date'] ?>">
+                                                <input name="TrackSection" hidden aria-hidden="true" value="<?php echo $current_section_track ?> ?>">
+                                                <button class="btn btn-success">View</button>
+                                            </form></td>
 
 
                                     </tr>

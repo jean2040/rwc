@@ -8,6 +8,7 @@
  * THE ATTENDANCE FILL WILL BE EMPTY
  * THEN IT WILL REDIRECT TO THE take_attendance PAGE
  */
+session_start();
 include 'connection.php';
 include 'dbSelect.php';
 include 'dbInsert.php';
@@ -24,7 +25,7 @@ foreach ( $students as $student ){
                                                 'Date' => date("Y-m-d")
                                                 ), 'ignore');
 }
-
+$_SESSION['TrackSection']= $trackSection;
 header('Location: ../public/studentAttendance.php');
 
 
