@@ -38,6 +38,8 @@ $my_students = getAll2(array('studentattendance.*','students.Firstname', 'studen
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
+                            <form id="attendForm" name="attendForm">
+                                <button type="submit" class="btn btn-success">Submit</button>
                             <table  id="studentsAttendance" width="100%" class="table table-striped table-bordered table-hover">
 
                                 <thead>
@@ -52,35 +54,33 @@ $my_students = getAll2(array('studentattendance.*','students.Firstname', 'studen
                                 <tbody>
 
                                 <?php
+                                $count= 0;
                                 while ($student = $my_students->fetch_assoc()) {
+
                                     ?>
 
                                     <tr>
-                                        <td><?php echo $student['StudentID'] ?></td>
+                                        <td><input type="text" name="<?php echo 'st_ID'.$count?>" value="<?php echo $student['StudentID']?>"></td>
                                         <td><?php echo $student['Firstname'] ?></td>
                                         <td><?php echo $student['Lastname'] ?></td>
-                                        <td><div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                <label class="btn btn-success">
-                                                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Present
-                                                </label>
-                                                <label class="btn btn-warning">
-                                                    <input type="radio" name="options" id="option2" autocomplete="off"> Late
-                                                </label>
-                                                <label class="btn btn-danger">
-                                                    <input type="radio" name="options" id="option3" autocomplete="off"> Absent
-                                                </label>
-                                            </div></td>
-                                        <td><input class="form-control" placeholder="Enter comment"></td>
+                                        <td><select class="form-control" size="1" name="<?php echo 'select_option'.$count?>">
+                                                <option value="present">Present</option>
+                                                <option value="late">Late</option>
+                                                <option value="absent">Absent</option>
+                                             </select></td>
+                                        <td><textarea  type="text" name="<?php echo 'comment'.$count?>" class="form-control" id="<?php echo "comment".$count?>" placeholder="Enter comment"></textarea></td>
 
                                     </tr>
 
                                     <?php
+                                    $count ++;
                                 }
                                 ?>
 
 
                                 </tbody>
                             </table>
+                            </form>
                         </div>
 
 
@@ -108,6 +108,7 @@ include '../includes/_footer_tables.php'
 
 <script>
     $(document).ready(function() {
+        console.log('v33');
         var table = $('#studentsAttendance').DataTable({
             responsive: true,
             dom: 'Bflrtip',
@@ -116,6 +117,31 @@ include '../includes/_footer_tables.php'
             ]
         });
 
+        $('#attendForm').on('submit',function (e) {
+            e.preventDefault();
+            //var dataT = table.row( $(this).parents('tr') ).data();
+            var data = table.$('input,select,textarea').serialize();
+
+            console.log(data);
+
+            $.ajax({
+                type: 'POST',
+                url: '../php/ajax/addAttendance.php',
+                data: {attend: data},
+                success: function(data){
+                    console.log('Updated', data);
+                }
+            });
+
+
+
+
+
+
+
+            //$('#trackModal').modal('toggle');
+            //alert( 'You clicked on '+data[0]+'\'s row' );
+        } );
 
     });
 </script>

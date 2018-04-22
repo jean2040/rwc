@@ -20,12 +20,17 @@ function insertBlank($table) {
 // General
 // -- Create a Blank Record with selected fields
 // @param: expects table, fields_array
-function insertFields($table, $fields_array) {
+function insertFields($table, $fields_array, $ignore) {
     $keys = null;
     $values = null;
     global $connection;
 
-    $query  = "INSERT INTO {$table}";
+    if (isset($ignore)){
+        $query  = "INSERT IGNORE INTO {$table}";
+    }else{
+        $query  = "INSERT INTO {$table}";
+    }
+
     $i = 0;
 
     foreach($fields_array as $key => $value){
@@ -47,7 +52,7 @@ function insertFields($table, $fields_array) {
     $query .= $values;
     $query .= ")";
     //
-    //echo $query;
+    echo $query;
 
     $record_set = mysqli_query($connection, $query);
     echo $record_set;

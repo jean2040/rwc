@@ -193,7 +193,7 @@ function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID, $gr
     $query .= " FROM {$table}";
 
     if(isset($joinTable)){
-        $query .= " JOIN {$joinTable}";
+        $query .= " LEFT JOIN {$joinTable}";
     }
 
 
@@ -202,7 +202,7 @@ function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID, $gr
         $query .= " ({$joinID})";
     }
 
-    if(isset($sort_field)){
+    if(isset($group_field)){
         $query .= " GROUP BY";
         $query .= " {$group_field}";
     }

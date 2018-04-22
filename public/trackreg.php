@@ -45,7 +45,7 @@ include '../includes/_headers.php'
                                     "ShortTitle" => $form["shortTitle"],
                                     "Description" => $form["trackDes"]
 
-                                )
+                                ), null
                             );
                             $error = "success";
                     }

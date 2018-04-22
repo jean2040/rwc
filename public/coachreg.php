@@ -54,7 +54,7 @@ include '../includes/_headers.php'
                                     "Active" => "No",
                                     "CoachID" => $newID,
                                     "StudentID" => NAN
-                                )
+                                ), null
                             );
                             //insert values to the coach table Note that we are using same coach id
                             insertFields("rwccoach",
@@ -70,7 +70,7 @@ include '../includes/_headers.php'
                                     "CreationTime" => date("Y-m-d H:i:s"),
                                     "DeleteFlag" => "N"
 
-                                )
+                                ), null
                             );
 
                             $error = "success";

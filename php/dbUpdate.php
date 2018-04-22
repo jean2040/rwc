@@ -21,8 +21,8 @@ function updateById($table, $column, $id, $fields_array){
     }
     $query .= " WHERE {$column} = '{$id}'";
 
-    //echo $query;
+    echo $query;
 
     $record_set = mysqli_query($connection, $query);
-    confirm_query($record_set);
+    confirm_query($record_set, $query);
 }

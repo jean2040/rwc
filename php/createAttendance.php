@@ -16,16 +16,13 @@ echo 'ver4';
 
 $students = getAll('studenttaketrack',array('TrackSectionID'=> $trackSection),null,null);
 
-if (!$student){
-    echo "WTH";
-}
-
 foreach ( $students as $student ){
 
     insertFields('studentattendance',array('StudentID' => $student['StudentID'],
                                                 'TrackSectionID'=> $trackSection,
+                                                'TrackID' => $student['TrackID'],
                                                 'Date' => date("Y-m-d")
-                                                ));
+                                                ), 'ignore');
 }
 
 header('Location: ../public/studentAttendance.php');

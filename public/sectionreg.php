@@ -43,7 +43,7 @@ include '../includes/_headers.php'
                                     "Location" => $form["sLocation"],
                                     "CreationTime" => date("Y-m-d H:i:s"),
                                     "DeleteFlag" => "N"
-                                        )
+                                        ), null
                             );
 
                         echo '<script type="text/javascript">window.location = "sectionreport.php";</script>';
