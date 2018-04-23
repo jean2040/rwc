@@ -1,9 +1,16 @@
 <?php
+session_start();
 include '../php/connection.php';
 include '../php/functions.php';
 include '../php/dbInsert.php';
 include '../php/dbSelect.php';
 
+if (isset($_SESSION['UserID'])){
+    $userLogged = getById('rwccoach','CoachID',$_SESSION['UserID']);
+    $userName = $userLogged['Firstname'] . " " . $userLogged['Lastname'];
+}else{
+    $userName = "Not Logged in";
+}
 
 ?>
 <!DOCTYPE html>
