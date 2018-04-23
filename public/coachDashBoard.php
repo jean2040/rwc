@@ -5,13 +5,12 @@
  * Date: 3/13/2018
  * Time: 6:35 PM
  */
-
 include '../includes/_headers.php';
 
-$CoachID = 'co5acac05ef2516';
+$CoachID = $_SESSION['UserID'];
 // get students data from db
 $Coach = getById('rwccoach','CoachID',$CoachID);
-$my_tracks = getAll2(array('rwccoachteachtrack.TrackID','track.TrackID', 'track.Title'),'rwccoachteachtrack' ,'track','TrackID',array('CoachID'=> $CoachID),null,null);
+$my_tracks = getAll2(array('rwccoachteachtrack.TrackSectionID','track.TrackID', 'track.Title'),'rwccoachteachtrack' ,'track','TrackID',array('CoachID'=> $CoachID),null,null);
 
 ?>
 
@@ -54,10 +53,15 @@ $my_tracks = getAll2(array('rwccoachteachtrack.TrackID','track.TrackID', 'track.
                                     ?>
 
                                     <tr>
-                                        <td><?php echo $track['TrackID'] ?></td>
+                                        <td><?php echo $track['TrackSectionID'] ?></td>
                                         <td><?php echo $track['Title'] ?></td>
                                         <td>
-                                            <button class="btn btn-success">View</button>
+                                            <form method='post' action="showattendance.php">
+                                                <input name="TrackSectionID" hidden value="<?php echo $track['TrackSectionID'] ?>">
+                                                <input name="TrackID" hidden value="<?php echo $track['TrackID'] ?>">
+                                                <button class="btn btn-success">View</button>
+                                            </form>
+
                                             </td>
 
 

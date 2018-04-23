@@ -175,7 +175,7 @@ function getCount($table, $query_array) {
 
 // this Function call will get the values from two tables using a common joindID
 // joindID must be identical in both tables
-function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID, $group_field) {
+function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID,$query_array, $group_field) {
     global $connection;
 
     $query  = "SELECT COUNT({$counter}),";
@@ -202,10 +202,26 @@ function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID, $gr
         $query .= " ({$joinID})";
     }
 
+    if(isset($query_array)){
+        $query .= " WHERE";
+        $cnt=0;
+        foreach ($query_array as $key => $value) {
+            if($cnt > 0) $query .= " AND";
+            $query .= " {$key} = ";
+            if (substr($value, 0, 1) == "_"){
+                $query .= substr($value, 1);
+            } else {
+                $query .= " '" . $value . "'";
+            }
+            $cnt++;
+        }
+    }
+
     if(isset($group_field)){
         $query .= " GROUP BY";
         $query .= " {$group_field}";
     }
+
 
     //echo $query;
 

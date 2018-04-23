@@ -9,12 +9,19 @@
 
 include '../includes/_headers.php';
 
-$CoachID = 'co5acac05ef2516';
-$current_section_track = "1";
-$track_id = "5";
+if (isset($_POST['TrackSectionID'])){
+    $CoachID = $_SESSION['UserID'];
+
+    $current_section_track = $_POST['TrackSectionID'];
+    $track_id = $_POST['track'];
 // get students data from db
-$Coach = getById('rwccoach','CoachID',$CoachID);
-$my_attendances = getCountGroupBy('StudentID',array('Date','track.Title'),'studentattendance','track','TrackID','Date');
+    $Coach = getById('rwccoach','CoachID',$CoachID);
+    $my_attendances = getCountGroupBy('StudentID',array('Date','track.Title'),'studentattendance','track','TrackID',array('TrackSectionID' => $current_section_track),'Date');
+}else{
+    header ('Location: ../public/coachDashBoard.php');
+}
+
+
 
 ?>
 
@@ -40,7 +47,7 @@ $my_attendances = getCountGroupBy('StudentID',array('Date','track.Title'),'stude
                     <!-- /.panel-heading -->
                   <div class="panel-body">
                       <form method="post" action="../php/createAttendance.php">
-                          <input hidden aria-hidden="true" name="track_section" value="<?php echo $current_section_track ?>">
+                          <input hidden aria-hidden="true" name="track_section" value="<?php echo $current_section_track; ?>">
                           <button class="btn btn_primary" type="submit">Take Today's Attendance</button>
                       </form>
 
@@ -70,7 +77,7 @@ $my_attendances = getCountGroupBy('StudentID',array('Date','track.Title'),'stude
                                         <td><?php echo $attend['COUNT(StudentID)'] ?></td>
                                         <td><form method="post" action="studentAttendance.php">
                                                 <input name="date" hidden aria-hidden="true" value="<?php echo $attend['Date'] ?>">
-                                                <input name="TrackSection" hidden aria-hidden="true" value="<?php echo $current_section_track ?> ?>">
+                                                <input name="TrackSection" hidden aria-hidden="true" value="<?php echo $current_section_track ?>">
                                                 <button class="btn btn-success">View</button>
                                             </form></td>
 

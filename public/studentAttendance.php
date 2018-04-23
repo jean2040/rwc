@@ -4,18 +4,33 @@
  * User: JeanPaul
  * Date: 3/13/2018
  * Time: 6:35 PM
+ * This page Shows the List of students that are ready to get the attendance.
+ * It will only show if tracksection has been set. Because this value is required, it will sendyou back to the dashboard
  */
 session_start();
 include '../includes/_headers.php';
 
 if (isset($_POST['date'])){
+    //If you are coming from the showAttendance View button, get the posted date
     $date=$_POST['date'];
-    $TrackSectionID = $_POST['TrackSection'];
+    if (isset($_POST['TrackSection'])){
+        //Track Section is a needed value for this page, if is not set, return to dashboard
+        $TrackSectionID = $_POST['TrackSection'];
+    }else{
+        header ('Location: ../public/coachDashBoard.php');
+    }
+
 }else{
     $date = date('Y-m-d');
-    $TrackSectionID = $_SESSION['TrackSection'];
-}
+    //if you are coming from the Take Today's Attendance option get the value from the function to create an attendance
+    if (isset($_SESSION['TrackSection'])){
+        //Track Section is a needed value for this page, if is not set, return to dashboard
+        $TrackSectionID = $_SESSION['TrackSection'];
+    }else{
+        header ('Location: ../public/coachDashBoard.php');
+    }
 
+}
 
 // get students data from db
 
@@ -70,7 +85,10 @@ $my_students = getAll2(array('studentattendance.*','students.Firstname', 'studen
                                     ?>
 
                                     <tr>
-                                        <td hidden><input type="text" name="<?php echo 'st_ID'.$count?>" value="<?php echo $student['StudentID']?>"></td>
+                                        <td hidden><input type="text" name="<?php echo 'st_ID'.$count?>" value="<?php echo $student['StudentID']?>">
+                                            <input name="<?php echo 'track_section'.$count?>" value="<?php echo $TrackSectionID; ?>">
+                                            <input name="<?php echo 'date'.$count?>" value="<?php echo $date; ?>">
+                                        </td>
                                         <td><?php echo $student['Firstname'] ?></td>
                                         <td><?php echo $student['Lastname'] ?></td>
                                         <td><select class="form-control" size="1" name="<?php echo 'select_option'.$count?>">
@@ -118,7 +136,7 @@ include '../includes/_footer_tables.php'
 
 <script>
     $(document).ready(function() {
-        console.log('v37');
+
         var table = $('#studentsAttendance').DataTable({
             responsive: true,
             dom: 'Bflrtip',

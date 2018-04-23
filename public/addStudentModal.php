@@ -83,8 +83,6 @@ $students = getAll('students',null,null,null);
 
         var table2 = $('#students_queue').DataTable({
             responsive: true
-
-
         });
 
 // this function will get  info form database on click using ajax and then showing it to the modal
@@ -94,14 +92,14 @@ $students = getAll('students',null,null,null);
             var dataT = table.row( $(this).parents('tr') ).data();
             var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
             var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
-            console.log(track_sectionId);
+            //console.log(track_sectionId);
             $.ajax({
                 type: "POST",
-                url: "../php/ajax/addStudent.php",
+                url: "../php/ajax/addStudentToTrack.php",
                 data: { student_id: dataT[0],table:"studenttaketrack", track_sectionId: track_sectionId, trackId:trackId},
                 dataType: "json",
                 success: function(data) {
-                    console.log(dataT);
+                    //console.log(dataT);
                     table2.row.add([
                         dataT[1],dataT[2],dataT[3], '<form method="post" action="studentEdit.php">\n' +
                         '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
@@ -109,13 +107,6 @@ $students = getAll('students',null,null,null);
                         '</form>']
                     ).draw();
                 }});
-
-
-
-
-
-            //$('#trackModal').modal('toggle');
-            //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
 
     });
