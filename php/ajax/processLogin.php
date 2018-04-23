@@ -14,11 +14,11 @@
 			$_SESSION['Role']=$user['Role'];
 			if($_SESSION['Role']==='admin'){
 				$_SESSION['UserID'] = $user['CoachID'];
-				echo "success";
+				echo "admin";
 			}
 			elseif ($_SESSION['Role']==='coach') {
 				$_SESSION['UserID']=$user['CoachID'];
-				echo "success";
+				echo "coach";
 			}
 			else{
 				$_SESSION['UserID']=$user['StudentID'];

@@ -11,6 +11,15 @@
 ?>
 
     <div class="container">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+            <div hidden class="alert alert-danger">
+                Oops There is something wrong with your Credentials, Try again.
+            </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -49,11 +58,8 @@
 <script>
 
     $(document).ready(function() {
-
         $('#loginForm').submit(function(e) {
             e.preventDefault();
-                console.log( $("#UserName").val());
-            console.log( $("#Password").val());
             $.ajax({
                 type: "POST",
                 url: '../php/ajax/processLogin.php',
@@ -61,21 +67,20 @@
                     userName: $("#UserName").val(),
                     password: $("#Password").val()
                 },
-                success: function(data)
+            success: function(data)
                 {
-
-                    if (data === 'success') {
+                    if (data === 'admin') {
                         window.location.replace('coachreport.php');
                     }
+                    else if (data === 'coach'){
+                        window.location.replace('showattendance.php');
+                    }
                     else {
-                        alert('Invalid Credentials');
-                        console.log(data);
+                        $('.alert').toggle();
                     }
                 }
             });
-
         });
-
     });
 
 </script>
