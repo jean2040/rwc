@@ -136,7 +136,7 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
         $query .= " {$sort_order}";
     }
 
-    echo $query;
+    //echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
@@ -228,5 +228,34 @@ function getCountGroupBy($counter, $fields_array,$table,$joinTable, $joinID,$que
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
     return $record_set;
+}
+
+// Generic
+// -- Remove a value from a specific table by Id or array if IDs
+function RemoveById($table,$fields_array) {
+    global $connection;
+
+    $query  = "DELETE FROM {$table}";
+
+    if(isset($fields_array)){
+        $query .= " WHERE";
+        $cnt=0;
+        foreach ($fields_array as $key => $value) {
+            if($cnt > 0) $query .= " AND";
+            $query .= " {$key} = ";
+            if (substr($value, 0, 1) == "_"){
+                $query .= substr($value, 1);
+            } else {
+                $query .= " '" . $value . "'";
+            }
+            $cnt++;
+        }
+    }
+
+    //echo $query;
+
+    $record_set = mysqli_query($connection, $query);
+    confirm_query($record_set);
+
 }
 

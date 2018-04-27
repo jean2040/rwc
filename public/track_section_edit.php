@@ -18,7 +18,7 @@ $form = checkFormParams(array("sName", "sStart", "sEnd"));
 
 if($form["cnt"] == 3){
     //inserts values to the Section table
-    updateById('section','SectionID',$_POST["id"],
+    updateById('section',array('SectionID'=>$_POST["id"]),
         array("SectionName" => $form["sName"],
             "StartDate" => $form["sStart"],
             "EndDate" => $form["sEnd"],
@@ -71,7 +71,7 @@ if (isset($_POST["id"])){
         <div class="col-lg-8 col-lg-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Section Information
+                    Section Track Information
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -91,7 +91,7 @@ if (isset($_POST["id"])){
                         <div class="tab-pane fade in active" id="general">
                             <input aria-hidden="true" hidden id="sID" name="id" value="<?php echo $t_id; ?>">
                             <input aria-hidden="true" hidden id="trackID" name="id" value="<?php echo $my_track['TrackID']; ?>">
-                            <h4><?php echo $my_track['TrackID'] . $my_track['Title']; ?></h4>
+                            <h4>Track Name : <?php echo $my_track['Title']; ?></h4>
 
                         </div>
                         <div class="tab-pane fade" id="coaches">
@@ -106,6 +106,7 @@ if (isset($_POST["id"])){
 
                                     <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
@@ -119,14 +120,13 @@ if (isset($_POST["id"])){
                                         ?>
 
                                         <tr>
+                                            <td><?php echo $coach['CoachID']; ?></td>
                                             <td><?php echo $coach['Firstname'] ?></td>
                                             <td ><?php echo $coach['Lastname'] ?></td>
                                             <td><?php echo $coach['Email'] ?></td>
-                                            <td> <form method="post">
-                                                    <input type="submit" class="btn btn-warning" name="action" value="Remove">
-                                                    <input type="hidden" name="id" value="<?php echo $coach['CoachID']; ?>"/>
-
-                                                </form></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-warning" id="remove">Remove</button>
+                                            </td>
 
                                         </tr>
 
@@ -202,9 +202,12 @@ if (isset($_POST["id"])){
 
 <?php
 include '../includes/_footer_tables.php';
+//tables initialization and functions are inside the following includes.
 include 'addCoachModal.php';
 include 'addStudentModal.php';
 ?>
+
+
 
 </body>
 

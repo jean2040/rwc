@@ -9,9 +9,7 @@ include '../php/dbUpdate.php';
  * $_POST["action"]) &&
  */
 
-if ($_SESSION['Role'] !== 'admin'){
-    header ('Location: ../public/coachDashBoard.php');
-}
+include '../php/sessionCheck.php';
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("trackTitle", "shortTitle", "trackDes"));
 
@@ -49,7 +47,7 @@ if (isset($_POST["id"])){
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <i class="fa fa-road fa-fw">Tracks</i>
+                    <i class="fa fa-road fa-fw">Track</i>
                     <i class="pull-right">
                         <a href="trackreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">

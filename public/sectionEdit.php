@@ -9,9 +9,7 @@ include '../php/dbUpdate.php';
  * Description: This page will show section Details and allow an Admin to Add Tracks to the Section
  */
 
-if ($_SESSION['Role'] !== 'admin'){
-    header ('Location: ../public/coachDashBoard.php');
-}
+include '../php/sessionCheck.php';
 
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("sName", "sStart", "sEnd"));
@@ -91,7 +89,7 @@ if (isset($_POST["id"])){
                             <form role="form" method="post">
                                 <input aria-hidden="true" hidden id="sID" name="id" value="<?php echo $t_id; ?>">
                                 <div class="form-group">
-                                    <label for="trackTitle">Track Title</label>
+                                    <label for="trackTitle">Section Title</label>
                                     <input class="form-control" id="sName" name="sName" required value="<?php echo $section['SectionName']; ?>">
                                 </div>
                                 <div class="form-group">

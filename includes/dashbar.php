@@ -42,7 +42,7 @@
                 </a>
             </li>
             <?php }endif; ?>
-            <?php if ($_SESSION['Role'] == 'coach'):{ ?>
+
 
                 <li>
                 <a href="../public/coachDashBoard.php"><i class="fa fa-graduation-cap fa-fw"></i>
@@ -52,7 +52,7 @@
                 </a>
             </li>
 
-            <?php }endif; ?>
+
 
 
         </ul>

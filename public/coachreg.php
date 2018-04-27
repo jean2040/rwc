@@ -77,8 +77,8 @@ include '../includes/_headers.php';
                             );
 
                             $error = "success";
-                            header("Location: coachreport.php");
-                            die();
+                            echo '<script type="text/javascript">window.location = "coachreport.php";</script>';
+
                         }
                     } else {
                         $error = "";

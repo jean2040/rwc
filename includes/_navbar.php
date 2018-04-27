@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img alt="Brand" src="..\includes\img\rwc_logo.jpg" style="height: 28px">
         </a>
         <a class="navbar-brand" href="index.php">RWC - Admin</a>

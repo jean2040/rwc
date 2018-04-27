@@ -73,6 +73,11 @@ $coaches = getAll('rwccoach',null,null,null);
 
 <script>
     $(document).ready(function() {
+        //this is the modal table
+
+        var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
+        var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
+
         var table = $('#t_coaches').DataTable({
             responsive: true,
             "scrollY":        "200px",
@@ -86,9 +91,16 @@ $coaches = getAll('rwccoach',null,null,null);
                 }
                 ]
         });
-
+        //This is the main page table
         var table2 = $('#coaches_queue').DataTable({
-            responsive: true
+            responsive: true,
+            "columnDefs": [
+                {
+                    "targets": [ 0 ],
+                    "visible": false
+
+                }
+            ]
 
         });
 
@@ -97,8 +109,7 @@ $coaches = getAll('rwccoach',null,null,null);
             $(this).removeClass('btn-primary');
             $(this).addClass('btn-warning');
             var dataT = table.row( $(this).parents('tr') ).data();
-            var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
-            var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
+
             //console.log(dataT);
             //console.log(sectionId);
             $.ajax({
@@ -107,11 +118,9 @@ $coaches = getAll('rwccoach',null,null,null);
                 data: { coach_id: dataT[1],table:"rwccoachteachtrack", track_section_id: track_sectionId, trackId: trackId},
                 dataType: "json",
                 success: function(data) {
+                    //console.log(dataT);
                         table2.row.add([
-                        dataT[2],dataT[3],dataT[4], '<form method="post" action="coachEdit.php">\n' +
-                        '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
-                        '<input type="hidden" name="id" value="'+dataT[1]+'">\n' +
-                        '</form>']
+                        dataT[1],dataT[2],dataT[3],dataT[4], '<button type="submit" class="btn btn-warning" name="remove">Remove</button>']
                     ).draw();
                 }});
 
@@ -122,6 +131,23 @@ $coaches = getAll('rwccoach',null,null,null);
             //$('#trackModal').modal('toggle');
             //alert( 'You clicked on '+data[0]+'\'s row' );
         } );
+
+        $('#coaches_queue tbody').on('click', 'button', function(){
+            var coachData = table2.row( $(this).parents('tr') ).data();
+            var row = table2.row( $(this).parents('tr') );
+
+
+            $.ajax({
+                type: "POST",
+                url: "../php/ajax/remove.php",
+                data: {coach_id:coachData[0], table: "rwccoachteachtrack", track_section_id: track_sectionId, trackId: trackId },
+                success: function (data) {
+                    console.log("testing");
+                    row.remove().draw();
+                }
+            })
+
+        })
 
     });
 </script>

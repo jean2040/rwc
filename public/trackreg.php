@@ -7,9 +7,7 @@
  */
 include '../includes/_headers.php';
 
-if ($_SESSION['Role'] !== 'admin'){
-    header ('Location: ../public/coachDashBoard.php');
-}
+include '../php/sessionCheck.php';
 
 ?>
 
@@ -53,6 +51,8 @@ if ($_SESSION['Role'] !== 'admin'){
                                 ), null
                             );
                             $error = "success";
+                        echo '<script type="text/javascript">window.location = "trackreport.php";</script>';
+
                     }
                      else {
                         $error = "";

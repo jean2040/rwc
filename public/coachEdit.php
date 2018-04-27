@@ -8,10 +8,8 @@ include '../php/dbUpdate.php';
  * Time: 7:39 PM
  * $_POST["action"]) &&
  */
+include '../php/sessionCheck.php';
 
-if ($_SESSION['Role'] !== 'admin'){
-    header ('Location: ../public/coachDashBoard.php');
-}
 
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("Firstname", "Lastname"));
@@ -44,7 +42,7 @@ if (isset($_POST['delete'])){
         )
     );
     header("Location: coachreport.php");
-    die();
+
 }
 
 //Check for ID and load the form with latest data.
@@ -70,7 +68,7 @@ if (isset($_POST["id"])){
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <i class="fa fa-road fa-fw">Tracks</i>
+                    <i class="fa fa-road fa-fw">Coach</i>
                     <i class="pull-right">
                         <a href="trackreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">

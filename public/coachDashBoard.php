@@ -7,6 +7,11 @@
  */
 include '../includes/_headers.php';
 
+if (!isset($_SESSION['Role'])) {
+    header('Location: ../public/');
+}
+
+
 $CoachID = $_SESSION['UserID'];
 // get students data from db
 $Coach = getById('rwccoach','CoachID',$CoachID);
