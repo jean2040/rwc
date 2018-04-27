@@ -1,5 +1,8 @@
 <?php
-include '../includes/_headers.php'
+include '../includes/_headers.php';
+
+
+
 ?>
 
 <div id="wrapper" xmlns: xmlns:>

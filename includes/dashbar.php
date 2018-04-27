@@ -11,7 +11,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-
+            <?php if ($_SESSION['Role'] == 'admin'):{ ?>
             <li>
                 <a href="../public/sectionreport.php"><i class="fa fa-calendar fa-fw"></i>
                     <span class="masked">
@@ -41,6 +41,20 @@
                     </span>
                 </a>
             </li>
+            <?php }endif; ?>
+            <?php if ($_SESSION['Role'] == 'coach'):{ ?>
+
+                <li>
+                <a href="../public/coachDashBoard.php"><i class="fa fa-graduation-cap fa-fw"></i>
+                    <span class="masked">
+                        My Tracks
+                    </span>
+                </a>
+            </li>
+
+            <?php }endif; ?>
+
+
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

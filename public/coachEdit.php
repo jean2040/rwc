@@ -8,12 +8,17 @@ include '../php/dbUpdate.php';
  * Time: 7:39 PM
  * $_POST["action"]) &&
  */
+
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
+
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("Firstname", "Lastname"));
 
 if($form["cnt"] == 2){
     //inserts values to the TRACK table
-    updateById('rwcCoach','CoachID',$_POST["id"],
+    updateById('rwcCoach',array('CoachID'=>$_POST["id"]),
         array(
             "FirstName" => $form["Firstname"],
             "LastName" => $form["Lastname"],
@@ -32,7 +37,7 @@ else {
 }
 
 if (isset($_POST['delete'])){
-    updateById('rwcCoach','CoachID',$_POST["delete"],
+    updateById('rwcCoach',array('CoachID'=>$_POST["delete"]),
         array(
             "DeleteFlag" => 'Y'
 

@@ -8,12 +8,16 @@ include '../php/dbUpdate.php';
  * Time: 7:39 PM
  * $_POST["action"]) &&
  */
+
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("trackTitle", "shortTitle", "trackDes"));
 
 if($form["cnt"] == 3){
     //inserts values to the TRACK table
-    updateById('track','TrackID',$_POST["id"],
+    updateById('track',array('TrackID'=>$_POST["id"]),
         array("Title" => $form["trackTitle"],
             "ShortTitle" => $form["shortTitle"],
             "Description" => $form["trackDes"]

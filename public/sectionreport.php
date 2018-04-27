@@ -1,5 +1,8 @@
 <?php
 include '../includes/_headers.php';
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
 // get sections data
 $my_sections = getAll('section', null,null,null);
 ?>

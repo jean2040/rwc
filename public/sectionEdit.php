@@ -8,12 +8,17 @@ include '../php/dbUpdate.php';
  * Time: 7:39 PM
  * Description: This page will show section Details and allow an Admin to Add Tracks to the Section
  */
+
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
+
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("sName", "sStart", "sEnd"));
 
 if($form["cnt"] == 3){
     //inserts values to the Section table
-    updateById('section','SectionID',$_POST["id"],
+    updateById('section',array('SectionID' =>$_POST["id"]),
         array("SectionName" => $form["sName"],
             "StartDate" => $form["sStart"],
             "EndDate" => $form["sEnd"],

@@ -8,6 +8,9 @@
 
 include '../includes/_headers.php';
 
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
 
 // get students data from db
 

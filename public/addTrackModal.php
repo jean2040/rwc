@@ -87,7 +87,7 @@ $tracks = getAll('track',null,null,null);
             var dataT = table.row( $(this).parents('tr') ).data();
             var sectionId = $('#sID').val();
 
-            console.log(sectionId);
+            //console.log(sectionId);
             $.ajax({
                 type: "POST",
                 url: "../php/addTrack.php",
@@ -96,7 +96,7 @@ $tracks = getAll('track',null,null,null);
                 success: function(data) {
                     //console.log(data);
                     table2.row.add([
-                            data,dataT[1],dataT[2], '<form method="post" action="trackEdit.php">\n' +
+                            data,dataT[1],dataT[2], '<form method="post" action="track_section_edit.php">\n' +
                                                         '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
                                                         '<input type="hidden" name="id" value="'+data+'">\n' +
                                                         '</form>']

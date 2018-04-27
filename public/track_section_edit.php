@@ -8,6 +8,11 @@ include '../php/dbUpdate.php';
  * Time: 7:39 PM
  * $_POST["action"]) &&
  */
+
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
+
 //here we check that the required values have been set in the post
 $form = checkFormParams(array("sName", "sStart", "sEnd"));
 

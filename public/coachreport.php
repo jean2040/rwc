@@ -8,7 +8,7 @@ if ($_SESSION['Role'] !== 'admin'){
 // get coaches data
 
 $my_coaches = getAll('rwccoach', null,null,null);
-$my_coaches2 = getAll2(array("logininfo.UserName", "rwccoach.*"),'rwccoach',"logininfo","coachID",null,null,null)
+$my_coaches2 = getAll2(array("logininfo.UserName", "rwccoach.*"),'rwccoach',"logininfo","coachID",array('rwccoach.DeleteFlag' => 'N'),null,null)
 
 ?>
 

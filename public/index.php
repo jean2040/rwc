@@ -1,33 +1,35 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Julian
+ * Date: 4/20/2018
+ * Time: 9:26 PM
+ * This is the user Login page.
+ * It will recieve username and pasword and use AJAX to validate the data.
+ */
 include '../includes/_headers.php'
 ?>
 
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <?php include '../includes/_navbar.php' ?>
-
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-
-            <!-- change this for a welcome page -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Blank</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+    <div class="container">
 
 
-            <!-- change this for a welcome page -->
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+
+            <div class="jumbotron" style="margin-top: 5%">
+                 <img src="../includes/img/rwc_logo.PNG" alt="rwc logo" class=".img-responsive center-block">
+
+                <div class="text-center">
+                <p style="margin-top: .5em">This portal is meant for coaches and admin staff from RWC.</p>
+                
+                <p><a href="login.php" class="btn btn-primary btn-lg" role="button">Sign In</a></p></div>
+           </div>
+
+            <div class="text-center">
+            <p style="margin-top: .5em">Do you need to register as a coach?</p><a href="coachreg.php">Click Here</a>
+
+
     </div>
-    <!-- /#page-wrapper -->
 
-</div>
+
 <?php
-    include '../includes/_footer.php'
+include '../includes/_footer_tables.php'
 ?>

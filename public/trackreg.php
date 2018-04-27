@@ -5,7 +5,12 @@
  * Date: 3/13/2018
  * Time: 5:44 PM
  */
-include '../includes/_headers.php'
+include '../includes/_headers.php';
+
+if ($_SESSION['Role'] !== 'admin'){
+    header ('Location: ../public/coachDashBoard.php');
+}
+
 ?>
 
 <div id="wrapper" xmlns: xmlns:>
