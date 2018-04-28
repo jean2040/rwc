@@ -65,7 +65,7 @@ include '../php/sessionCheck.php';
                         Add a New Track
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" id="trackRegistration">
+                        <form role="form" method="POST" id="trackRegistration" data-toggle="validator">
                             <div class="row">
 
                                 <div class="col-lg-12">

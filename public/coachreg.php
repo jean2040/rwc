@@ -49,7 +49,7 @@ include '../includes/_headers.php';
                             $newID = getID("co");
                             //echo $newID;
                             //inserts values to the login table
-                            insertFields("logininfo",
+                            $user = insertFields("logininfo",
                                 array("UserName" => $form["uName"],
                                     "Password" => password_hash($form["uPass"], PASSWORD_DEFAULT),
                                     "Role" => "coach",
@@ -90,18 +90,28 @@ include '../includes/_headers.php';
                         Register Coach
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" id="coachRegistration">
+                        <form role="form" method="POST" id="coachRegistration" data-toggle="validator">
                         <div class="row">
 
                                 <div class="col-lg-6">
 
                                     <div class="form-group">
-                                        <label>User Name</label>
-                                        <input class="form-control" id="uName" name="uName" required minlength="4">
+                                        <label for="uName">User Name</label>
+                                        <input type="text" class="form-control" id="uName" name="uName" required
+                                               data-minlength="4"
+                                               data-error="User Name required with Minimum of 4 Characters">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
+                                        <label for="uPass">Password</label>
                                         <input class="form-control" id="uPass" name="uPass" type="password" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rePass">Repeat password</label>
+                                        <input data-match="#uPass" class="form-control" id="rePass" name="rePass" type="password"
+                                               data-match-error="Whoops, these don't match" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
 
 
@@ -113,22 +123,32 @@ include '../includes/_headers.php';
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input class="form-control" id="fName" name="fName" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
                                         <label>Last Name</label>
                                         <input class="form-control" id="lName" name="lName" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" id="email" name="email">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required placeholder="email@email.com">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Phone</label>
-                                        <input class="form-control" type="tel" name="phone">
+                                        <label for="phone">Phone</label>
+                                        <input  id="phone"
+                                                class="form-control"
+                                                type="tel"
+                                                name="phone"
+                                                placeholder="(845)555-1212"
+                                                data-minlength="10"
+                                                data-error="Hey, does not a valid Phone Number">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Gender</label>
-                                        <select name="gender" name="gender" class="form-control">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" name="gender" class="form-control">
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
                                         </select>
@@ -146,22 +166,12 @@ include '../includes/_headers.php';
                                                     <input type="checkbox" name="language[]" value="spanish">Spanish
                                                 </label>
                                             </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="language[]" value= "other">Other
-                                                </label>
-                                            </div>
                                             <div>
-                                                <input type="text" name="language[]" name="other" class="form-control">
+                                                <input type="text" name="language[]" placeholder="Other" class="form-control">
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
-
                         </div>
                             <div class="col-md-16">
                                 <button type="submit" class="btn btn-primary btn-block">Submit</button>

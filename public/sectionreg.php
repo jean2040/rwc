@@ -62,33 +62,46 @@ include '../php/sessionCheck.php';
                         Register Section
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" id="coachRegistration">
+                        <form role="form" method="POST" id="coachRegistration" data-toggle="validator">
                             <div class="row">
 
                                 <div class="col-lg-6">
 
                                     <div class="form-group">
                                         <label for="sName">Section Name</label>
-                                        <input class="form-control" id="sName" name="sName" required minlength="4">
+                                        <input class="form-control"
+                                               id="sName"
+                                               name="sName"
+                                               required
+                                               data-minlength="4"
+                                               data-error="Section Name required with Minimum of 4 Characters">
+                                        <div class="help-block with-errors"></div>
+
                                     </div>
                                     <div class="form-group">
                                         <label for="sStart">Start Date</label>
-                                        <input class="form-control" id="sStart" name="sStart" type="date" required>
+                                        <input class="form-control" id="sStart" name="sStart" type="date" required
+                                               data-error="Please Choose a Start Date">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="sEnd">End Date</label>
-                                        <input class="form-control" id="sEnd" name="sEnd" type="date" required>
+                                        <input class="form-control" id="sEnd" name="sEnd" type="date" required
+                                               data-error="Please Choose a Start Date">
+                                        <div class="help-block with-errors"></div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="sLocation">Location</label>
-                                        <input class="form-control" id="sLocation" name="sLocation" required>
+                                        <input class="form-control" id="sLocation" name="sLocation" required
+                                               data-error="Please add a Location">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-16">
-                                <button id="btn_submit" class="btn btn-primary btn-block">Submit</button>
+                                <button type="submit" id="btn_submit" class="btn btn-primary btn-block">Submit</button>
                                 <button type="reset" class="btn btn-warning btn-block">Reset</button>
                             </div>
                         </form>
