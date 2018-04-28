@@ -17,9 +17,9 @@ $form = checkFormParams(array("Firstname", "Lastname"));
 if($form["cnt"] == 2){
     //inserts values to the TRACK table
     if (!empty($_POST['password'])){
-        echo $_POST['password'];
+
        updateById('logininfo',array('CoachID'=>$_POST["id"]),
-           array("Password" => password_hash($form["password"], PASSWORD_DEFAULT),));
+           array("Password" => password_hash($_POST["password"], PASSWORD_DEFAULT),));
     }
     updateById('rwcCoach',array('CoachID'=>$_POST["id"]),
         array(
@@ -34,7 +34,7 @@ if($form["cnt"] == 2){
         )
     );
     $error = "success";
-    echo $_POST['password'];
+
 }
 else {
     $error = "";
@@ -54,12 +54,13 @@ if (isset($_POST['delete'])){
 //Check for ID and load the form with latest data.
 if (isset($_POST["id"])){
     $c_id = $_POST["id"];
-    $coach = getById('rwccoach','CoachID',$_POST["id"]);
+    }else{
+    $c_id = $_SESSION["UserID"];
+}
 
-    if (isset($coach["LanguageSkill"])){
-        $coach["LanguageSkill"] = unserialize($coach["LanguageSkill"]);
-    }
-
+$coach = getById('rwccoach','CoachID',$c_id);
+if (isset($coach["LanguageSkill"])){
+    $coach["LanguageSkill"] = unserialize($coach["LanguageSkill"]);
 }
 
 ?>
@@ -76,7 +77,7 @@ if (isset($_POST["id"])){
                 <h1 class="page-header">
                     <i class="fa fa-road fa-fw">Coach</i>
                     <i class="pull-right">
-                        <a href="trackreport.php">
+                        <a href="coachreport.php">
                             <button type="button" class="btn btn-default btn-circle btn-md">
                                 <i class="fa fa-times">
                                 </i>

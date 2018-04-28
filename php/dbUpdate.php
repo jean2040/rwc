@@ -35,7 +35,7 @@ function updateById($table, $query_array, $fields_array){
         }
     }
 
-    echo $query;
+    //echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);
