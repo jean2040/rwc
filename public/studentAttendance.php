@@ -125,6 +125,28 @@ $my_students = getAll2(array('studentattendance.*','students.Firstname', 'studen
 </div>
 <!-- /#page-wrapper -->
 
+<!-- Modal Notification -->
+
+<div class="modal fade in" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; padding-right: 17px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Success</h4>
+            </div>
+            <div class="modal-body">
+                Students Attendance has been update.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- End of Modal -->
+
 
 <?php
 //include datatables scripts
@@ -151,14 +173,16 @@ include '../includes/_footer_tables.php'
             //var dataT = table.row( $(this).parents('tr') ).data();
             var data = table.$('input,select,textarea').serialize();
 
-            console.log(data);
+            //console.log(data);
 
             $.ajax({
                 type: 'POST',
                 url: '../php/ajax/addAttendance.php',
                 data: {attend: data},
                 success: function(data){
-                    console.log('Updated', data);
+                    //console.log('Updated',data);
+                    $('#successModal').modal('show')
+
                 }
             });
 

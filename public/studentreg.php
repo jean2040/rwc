@@ -46,7 +46,8 @@ include '../php/sessionCheck.php';
                             // Generate a random ID with "co" as prefix.
                             $newID = getID("st");
                             //inserts values to the login table
-                            insertFields("logininfo",
+                            //THIS OPTION IS DISABLED FROM STUDENTS UNTIL STUDENT MODULE IS FULLY IMPLEMENTED
+                            /*insertFields("logininfo",
                                 array("UserName" => $form["uName"],
                                     "Password" => password_hash($form["uPass"], PASSWORD_DEFAULT),
                                     "Role" => "student",
@@ -55,7 +56,7 @@ include '../php/sessionCheck.php';
                                     "CoachID" => NAN,
                                     "StudentID" => $newID
                                 ),null
-                            );
+                            );*/
                             //insert values to the coach table Note that we are using same coach id
                             insertFields("students",
                                 array(
@@ -87,19 +88,7 @@ include '../php/sessionCheck.php';
                     <div class="panel-body">
                         <form role="form" method="POST" id="studentRegistration">
                             <div class="row">
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>User Name</label>
-                                        <input class="form-control" id="uName" name="uName" required minlength="4" value="<?php echo isset($_POST["uName"]) ? $_POST["uName"] : ''; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input class="form-control" id="uPass" name="uPass" type="password" required value="<?php echo isset($_POST["uPass"]) ? $_POST["uPass"] : ''; ?>">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
+                              <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input class="form-control" id="fName" name="fName" required value="<?php echo isset($_POST["fName"]) ? $_POST["fName"] : ''; ?>">

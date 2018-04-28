@@ -46,7 +46,8 @@ include '../php/sessionCheck.php';
                             insertFields("track",
                                 array("Title" => $form["trackTitle"],
                                     "ShortTitle" => $form["shortTitle"],
-                                    "Description" => $form["trackDes"]
+                                    "Description" => $form["trackDes"],
+                                    "DeleteFlag" => "N"
 
                                 ), null
                             );

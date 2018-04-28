@@ -12,7 +12,7 @@ include '../php/sessionCheck.php';
 
 // get tracks data from db
 
-$my_tracks = getAll('track', null,null,null);
+$my_tracks = getAll('track', array('DeleteFlag'=> 'N'),null,null);
 
 ?>
 

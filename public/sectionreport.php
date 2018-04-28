@@ -2,7 +2,7 @@
 include '../includes/_headers.php';
 include '../php/sessionCheck.php';
 // get sections data
-$my_sections = getAll('section', null,null,null);
+$my_sections = getAll('section', array('DeleteFlag'=> "N"),null,null);
 ?>
 <div id="wrapper" xmlns: xmlns:>
     <!-- Navigation -->

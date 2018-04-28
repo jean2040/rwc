@@ -16,6 +16,11 @@ $form = checkFormParams(array("Firstname", "Lastname"));
 
 if($form["cnt"] == 2){
     //inserts values to the TRACK table
+    if (!empty($_POST['password'])){
+        echo $_POST['password'];
+       updateById('logininfo',array('CoachID'=>$_POST["id"]),
+           array("Password" => password_hash($form["password"], PASSWORD_DEFAULT),));
+    }
     updateById('rwcCoach',array('CoachID'=>$_POST["id"]),
         array(
             "FirstName" => $form["Firstname"],
@@ -29,6 +34,7 @@ if($form["cnt"] == 2){
         )
     );
     $error = "success";
+    echo $_POST['password'];
 }
 else {
     $error = "";
@@ -84,15 +90,15 @@ if (isset($_POST["id"])){
         <!-- /.row -->
 
         <div class="col-lg-8 col-lg-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="height: 55px;">
-                    <div class="col-md-9"><h4>You are Editing : <?php echo $coach['Firstname'] . " " . $coach['Lastname'] ; ?> Profile</h4></div>
-                    <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><b>You are Editing :</b> <?php echo $coach['Firstname'] . " " . $coach['Lastname'] ; ?> Profile</h4>
+
                         <form class="pull-right" action="" method="post" role="form">
                             <input aria-hidden="true" hidden name="delete" value="<?php echo $c_id; ?>">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                    </div>
+
 
 
                 </div>
@@ -145,17 +151,24 @@ if (isset($_POST["id"])){
                                             </label>
                                         </div>
                                         <div>
-                                            <input type="text" name="language[3]" name="other" class="form-control" value="<?php print_r($coach['LanguageSkill'][3]); ?>">
+                                            <input type="text" name="language[3]" name="other" class="form-control" autocomplete="off" value="<?php print_r($coach['LanguageSkill'][3]); ?>">
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label>Change Password</label>
+                                    <input class="form-control" id="email" name="password" type="password" value="" autocomplete="off">
+                                </div>
+
+
 
                             </div>
 
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                            <button type="reset" class="btn btn-warning btn-block">Reset</button>
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
+
                         </div>
                     </form>
                     <!-- /.col-lg-6 (nested) -->

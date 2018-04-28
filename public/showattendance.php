@@ -9,13 +9,17 @@
 
 include '../includes/_headers.php';
 
+
 if (isset($_POST['TrackSectionID'])){
     $CoachID = $_SESSION['UserID'];
 
     $current_section_track = $_POST['TrackSectionID'];
-    $track_id = $_POST['track'];
-// get students data from db
+    $track_id = $_POST['TrackID'];
+    //Get Coach info
     $Coach = getById('rwccoach','CoachID',$CoachID);
+    //get student count from DB of the current track Class
+    $studentCount = getCount('studenttaketrack',array('TrackSectionID' => $current_section_track, 'TrackId' => $track_id));
+    // get students data from db
     $my_attendances = getCountGroupBy('StudentID',array('Date','track.Title'),'studentattendance','track','TrackID',array('TrackSectionID' => $current_section_track),'Date');
 }else{
     header ('Location: ../public/coachDashBoard.php');
@@ -48,7 +52,11 @@ if (isset($_POST['TrackSectionID'])){
                   <div class="panel-body">
                       <form method="post" action="../php/createAttendance.php">
                           <input hidden aria-hidden="true" name="track_section" value="<?php echo $current_section_track; ?>">
-                          <button class="btn btn_primary" type="submit">Take Today's Attendance</button>
+                          <?php if ($studentCount == '0'):{?>
+                              <span>You Do not have any Students yet</span>
+                          <?php }else:{ ?>
+                              <button class="btn btn_primary" type="submit">Take Today's Attendance</button>
+                          <?php } endif;?>
                       </form>
 
                       <br>

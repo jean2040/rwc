@@ -28,13 +28,27 @@ if($form["cnt"] == 3){
 else {
     $error = "";
 }
+
+//IF WE post the form delete
+if (isset($_POST['delete'])){
+    updateById('section',array('SectionID'=>$_POST["delete"]),
+        array(
+            "DeleteFlag" => 'Y'
+
+        )
+    );
+    header("Location: sectionreport.php");
+
+}
+
+
 //Check for ID and load the form with latest data.
 if (isset($_POST["id"])){
     $t_id = $_POST["id"];
 
     $section = getById('section','SectionID',$_POST["id"]);
     $tracks = getById('trackhassection','SectionID',$_POST["id"]);
-    $my_tracks = getAll2(array('track.*','trackhassection.TrackSectionID'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id),null,null);
+    $my_tracks = getAll2(array('track.*','trackhassection.TrackSectionID'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id, 'trackhassection.DeleteFlag'=> 'N'),null,null);
 
 }
 
@@ -66,9 +80,14 @@ if (isset($_POST["id"])){
         <!-- /.row -->
 
         <div class="col-lg-8 col-lg-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Section Information
+            <div class="panel panel-primary">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Section Information</h4>
+
+                    <form class="pull-right" action="" method="post" role="form">
+                        <input aria-hidden="true" hidden name="delete" value="<?php echo $t_id; ?>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -109,8 +128,7 @@ if (isset($_POST["id"])){
 
 
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                                    <button type="reset" class="btn btn-warning btn-block">Reset</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
                                 </div>
 
                             </form>

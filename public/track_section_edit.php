@@ -30,6 +30,18 @@ if($form["cnt"] == 3){
 else {
     $error = "";
 }
+
+//if we post the form delete
+if (isset($_POST['delete'])){
+    updateById('trackhassection',array('TrackSectionID'=>$_POST["delete"]),
+        array(
+            "DeleteFlag" => 'Y'
+        )
+    );
+    header("Location: sectionreport.php");
+
+}
+
 //Check for ID and load the form with latest data.
 if (isset($_POST["id"])){
     $t_id = $_POST["id"];
@@ -70,8 +82,12 @@ if (isset($_POST["id"])){
 
         <div class="col-lg-8 col-lg-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    Section Track Information
+                <div class="panel-heading clearfix">
+                    <h4 lass="panel-title pull-left" style="padding-top: 7.5px;">Section Track Information</h4>
+                    <form class="pull-right" action="" method="post" role="form">
+                        <input aria-hidden="true" hidden name="delete" value="<?php echo $t_id; ?>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

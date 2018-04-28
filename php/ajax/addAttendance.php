@@ -12,16 +12,16 @@ $params = array();
 parse_str($_POST['attend'],$params);
 
 for ($i = 0 ; $i < count($params)/3; $i++){
-    echo $params['st_ID'.$i] ."\n";
-    echo $params['select_option'.$i] ."\n";
-    echo $params['comment'.$i] ."\n";
+    //echo $params['st_ID'.$i] ."\n";
+    //echo $params['select_option'.$i] ."\n";
+    //echo $params['comment'.$i] ."\n";
     updateById('studentattendance',array(
                         'StudentID' =>$params['st_ID'.$i],
                         'TrackSectionID' => $params['track_section'.$i],
                         'Date' => $params['date'.$i]),
         array('Attendance'=>$params['select_option'.$i], 'Comments'=> $params['comment'.$i]));
 }
-echo 'updated 4/22';
+//echo 'updated 4/22';
 
 
 
