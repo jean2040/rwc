@@ -44,29 +44,8 @@ $sections = getAll('section',null,'StartDate','desc')
                 </form>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div id="qty" class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div id="panels" class="row">
+
 
             </div>
             <!-- /.row -->
@@ -86,23 +65,56 @@ $sections = getAll('section',null,'StartDate','desc')
 
 <script>
     $(document).ready(function (){
-        console.log(13);
+        $(function() {
+            $('#sectionFilter').submit();
+        });
+
         $('#sectionFilter').on('submit', function(e) {
             e.preventDefault();
             var sectionID = $('#sectionSelector').val();
-            console.log(sectionID);
+
             $.ajax({
                 type: "POST",
                 url: "../php/ajax/dashBoardData.php",
                 data: {sectionID: sectionID},
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data.length);
-
-
+                        drawDash(data);
                 }
             })
         });
+
+        function drawDash(users) {
+            $('#panels').empty();
+            console.log(users);
+            for (i = 0; i < users.length; i++) {
+                console.log(users[i]['coachName']);
+                var box = "<div class=\"col-lg-4 col-md-6\">\n" +
+                    "                    <div class=\"panel panel-primary\">\n" +
+                    "                        <div class=\"panel-heading\">\n" +
+                    "                            <div class=\"row\">\n" +
+                    "                                <div class=\"col-xs-3\">\n" +
+                    "                                    <div class=\"huge\">"+users[i]['COUNT(studenttaketrack.StudentID)']+"</div>\n" +
+                    "                                </div>\n" +
+                    "                                <div class=\"col-xs-9 text-right\">\n" +
+                    "                                    <h3>"+users[i]['TrackTitle']+"</h3>\n" +
+                    "                                    <div>"+users[i]['coachName']+"</div>\n" +
+                    "                                </div>\n" +
+                    "                            </div>\n" +
+                    "                        </div>\n" +
+                    "                        <a href=\"#\">\n" +
+                    "                            <div class=\"panel-footer\">\n" +
+                    "                                <span class=\"pull-left\">View Details</span>\n" +
+                    "                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n" +
+                    "                                <div class=\"clearfix\"></div>\n" +
+                    "                            </div>\n" +
+                    "                        </a>\n" +
+                    "                    </div>\n" +
+                    "                </div>";
+                $("#panels").append(box);
+            }
+
+        }
 
     });
 

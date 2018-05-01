@@ -13,11 +13,12 @@ include '../connection.php';
 $val = $_POST['sectionID'];
 
 //$stmt = $connection->prepare("SELECT * FROM `studenttaketrack` WHERE TrackID = ?");
-$stmt = $connection->prepare("SELECT trackhassection.SectionID, trackhassection.TrackSectionID, rwccoachteachtrack.CoachID, rwccoach.Firstname AS 'coachName', COUNT(studenttaketrack.StudentID)
+$stmt = $connection->prepare("SELECT trackhassection.SectionID, trackhassection.TrackSectionID, rwccoachteachtrack.CoachID, rwccoach.Firstname AS 'coachName',track.Title AS 'TrackTitle', COUNT(studenttaketrack.StudentID)
 FROM trackhassection
 LEFT JOIN rwccoachteachtrack ON rwccoachteachtrack.TrackSectionID = trackhassection.TrackSectionID
 LEFT JOIN rwccoach ON rwccoach.CoachID = rwccoachteachtrack.CoachID
 LEFT JOIN studenttaketrack ON studenttaketrack.TrackSectionID = trackhassection.TrackSectionID
+LEFT JOIN track ON trackhassection.TrackID = track.TrackID
 WHERE trackhassection.DeleteFlag= 'N' AND trackhassection.SectionID = ? 
 GROUP by trackhassection.TrackSectionID");
 
