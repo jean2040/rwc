@@ -6,8 +6,9 @@
  * Time: 7:15 PM
  */
 include '../includes/_headers.php';
+include '../php/sessionCheck.php';
 
-$sections = getAll('section',null,'StartDate','desc')
+$sections = getAll('section',array("DeleteFlag"=> 'N'),'StartDate','desc')
 
 ?>
 
@@ -65,6 +66,7 @@ $sections = getAll('section',null,'StartDate','desc')
 
 <script>
     $(document).ready(function (){
+        console.log("6");
         $(function() {
             $('#sectionFilter').submit();
         });
@@ -84,13 +86,21 @@ $sections = getAll('section',null,'StartDate','desc')
             })
         });
 
+
+
         function drawDash(users) {
             $('#panels').empty();
-            console.log(users);
+            //console.log(users);
+            var pnltype = 'class="panel panel-primary"';
             for (i = 0; i < users.length; i++) {
-                console.log(users[i]['coachName']);
+                //console.log(users[i]);
+                if (users[i]['COUNT(studenttaketrack.StudentID)']=== 0){
+                    pnltype = 'class="panel panel-red"';
+                }else {
+                    pnltype = 'class="panel panel-primary"';
+                }
                 var box = "<div class=\"col-lg-4 col-md-6\">\n" +
-                    "                    <div class=\"panel panel-primary\">\n" +
+                    "                    <div "+pnltype+">\n" +
                     "                        <div class=\"panel-heading\">\n" +
                     "                            <div class=\"row\">\n" +
                     "                                <div class=\"col-xs-3\">\n" +
@@ -102,19 +112,22 @@ $sections = getAll('section',null,'StartDate','desc')
                     "                                </div>\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +
-                    "                        <a href=\"#\">\n" +
+                    "                        <form id='panelSection' method='post' action='track_section_edit.php'><button type='submit' class='pnlButton btn-block'>\n" +
+                    "                           <input hidden aria-hidden='true' name='id' value='"+users[i]['TrackSectionID']+"'>\n"+
                     "                            <div class=\"panel-footer\">\n" +
                     "                                <span class=\"pull-left\">View Details</span>\n" +
                     "                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n" +
                     "                                <div class=\"clearfix\"></div>\n" +
                     "                            </div>\n" +
-                    "                        </a>\n" +
+                    "                        </button></form>\n" +
                     "                    </div>\n" +
                     "                </div>";
                 $("#panels").append(box);
             }
 
         }
+
+
 
     });
 

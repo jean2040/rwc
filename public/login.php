@@ -66,7 +66,7 @@
             success: function(data)
                 {
                     if (data === 'admin') {
-                        window.location.replace('sectionreport.php');
+                        window.location.replace('adminDashboard.php');
                     }
                     else if (data === 'coach'){
                         window.location.replace('showattendance.php');

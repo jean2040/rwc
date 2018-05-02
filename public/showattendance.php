@@ -128,11 +128,8 @@ include '../includes/_footer_tables.php'
 <script>
     $(document).ready(function() {
         var table = $('#coachTracks').DataTable({
-            responsive: true,
-            dom: 'Bflrtip',
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ]
+            responsive: true
+
         });
 
 

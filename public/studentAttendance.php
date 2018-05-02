@@ -69,11 +69,13 @@ $my_students = getAll2(array('studentattendance.*','students.Firstname', 'studen
 
                                 <thead>
                                 <tr>
-                                    <th hidden>ID</th>
+
                                     <th>First Name</th>
+                                    <th hidden>ID</th>
                                     <th>Last Name</th>
                                     <th>Attendance</th>
                                     <th>Comments</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -85,11 +87,11 @@ $my_students = getAll2(array('studentattendance.*','students.Firstname', 'studen
                                     ?>
 
                                     <tr>
+                                        <td><?php echo $student['Firstname'] ?></td>
                                         <td hidden><input type="text" name="<?php echo 'st_ID'.$count?>" value="<?php echo $student['StudentID']?>">
                                             <input name="<?php echo 'track_section'.$count?>" value="<?php echo $TrackSectionID; ?>">
                                             <input name="<?php echo 'date'.$count?>" value="<?php echo $date; ?>">
                                         </td>
-                                        <td><?php echo $student['Firstname'] ?></td>
                                         <td><?php echo $student['Lastname'] ?></td>
                                         <td><select class="form-control" size="1" name="<?php echo 'select_option'.$count?>">
                                                 <option value="present" <?php if ($student['Attendance']=='present'){echo 'selected';}?>>Present</option>
@@ -160,12 +162,7 @@ include '../includes/_footer_tables.php'
     $(document).ready(function() {
 
         var table = $('#studentsAttendance').DataTable({
-            responsive: true,
-            dom: 'Bflrtip',
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ]
-
+            responsive: true
         });
 
         $('#attendForm').on('submit',function (e) {

@@ -49,7 +49,7 @@ $coaches = getAll('rwccoach',null,null,null);
                                 <td><?php echo $coach['Firstname'] ?></td>
                                 <td><?php echo $coach['Lastname'] ?></td>
                                 <td><?php echo $coach['Email'] ?></td>
-                                <td><?php echo print_r(unserialize($coach['LanguageSkill'])) ?></td>
+                                <td><?php echo implode(", ",unserialize($coach['LanguageSkill']))  ?></td>
 
 
                             </tr>
