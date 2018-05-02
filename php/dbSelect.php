@@ -83,7 +83,7 @@ function getAll($table, $query_array, $sort_field, $sort_order) {
 
 // this Function call will get the values from two tables using a common joindID
 // joindID must be identical in both tables
-function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_field, $sort_order) {
+function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_field, $sort_order, $null_array) {
     global $connection;
 
     $query  = "SELECT ";
@@ -135,8 +135,22 @@ function getAll2($fields_array,$table,$joinTable, $joinID, $query_array, $sort_f
     if(isset($sort_order)){
         $query .= " {$sort_order}";
     }
+    if(isset($null_array)){
+        $query .= " WHERE";
+        $cnt=0;
+        foreach ($null_array as $key => $value) {
+            if($cnt > 0) $query .= " AND";
+            $query .= " {$key} IS ";
+            if (substr($value, 0, 1) == "_"){
+                $query .= substr($value, 1);
+            } else {
+                $query .= $value ;
+            }
+            $cnt++;
+        }
+    }
 
-    //echo $query;
+    echo $query;
 
     $record_set = mysqli_query($connection, $query);
     confirm_query($record_set);

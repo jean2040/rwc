@@ -6,7 +6,8 @@
  * Time: 9:27 PM
  */
 
-$students = getAll('students',null,null,null);
+//$students = getAll('students',null,null,null);
+$students = getAll2(array('students.*'),'students','studenttaketrack','StudentID',null,null,null, array("studenttaketrack.StudentID"=> 'NULL'));
 
 ?>
 
@@ -86,7 +87,14 @@ $students = getAll('students',null,null,null);
         });
 
         var table2 = $('#students_queue').DataTable({
-            responsive: true
+            responsive: true,
+            "columnDefs": [
+                {
+                    "targets": [ 0 ],
+                    "visible": false
+
+                }
+            ]
         });
 
 // this function will get  info form database on click using ajax and then showing it to the modal
@@ -96,6 +104,7 @@ $students = getAll('students',null,null,null);
             var dataT = table.row( $(this).parents('tr') ).data();
             var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
             var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
+            var row = table.row( $(this).parents('tr') );
             //console.log(track_sectionId);
             $.ajax({
                 type: "POST",
@@ -105,17 +114,15 @@ $students = getAll('students',null,null,null);
                 success: function(data) {
                     //console.log(dataT);
                     table2.row.add([
-                        dataT[1],dataT[2],dataT[3], '<form method="post" action="studentEdit.php">\n' +
-                        '<input type="submit" class="btn btn-warning" name="action" value="Edit">\n' +
-                        '<input type="hidden" name="id" value="'+dataT[0]+'">\n' +
-                        '</form>']
+                        dataT[0],dataT[1],dataT[2],dataT[3], '<button type="submit" class="btn btn-warning" name="remove">Remove</button>']
                     ).draw();
+                    row.remove().draw();
                 }});
         } );
 
         $('#students_queue tbody').on('click', 'button', function(){
             var studentData = table2.row( $(this).parents('tr') ).data();
-            var row = table2.row( $(this).parents('tr') );
+            var row2 = table2.row( $(this).parents('tr') );
 
 
             $.ajax({
@@ -124,7 +131,7 @@ $students = getAll('students',null,null,null);
                 data: {student_id:studentData[0], table: "studenttaketrack", track_section_id: track_sectionId, trackId: trackId },
                 success: function (data) {
                     //console.log("testing2");
-                    row.remove().draw();
+                    row2.remove().draw();
                 }
             })
 

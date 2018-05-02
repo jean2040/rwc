@@ -15,7 +15,7 @@ include '../includes/_headers.php'
 
 
             <div class="jumbotron" style="margin-top: 5%">
-                 <img src="../includes/img/rwc_logo.PNG" alt="rwc logo" class=".img-responsive center-block">
+                 <img src="../includes/img/rwc_logo.PNG" alt="rwc logo" class="img-responsive center-block">
 
                 <div class="text-center">
                 <p style="margin-top: .5em">This portal is meant for coaches and admin staff from RWC.</p>

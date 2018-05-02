@@ -109,7 +109,7 @@ $coaches = getAll('rwccoach',null,null,null);
             $(this).removeClass('btn-primary');
             $(this).addClass('btn-warning');
             var dataT = table.row( $(this).parents('tr') ).data();
-
+            var row = table.row( $(this).parents('tr') );
             //console.log(dataT);
             //console.log(sectionId);
             $.ajax({
@@ -122,11 +122,8 @@ $coaches = getAll('rwccoach',null,null,null);
                         table2.row.add([
                         dataT[1],dataT[2],dataT[3],dataT[4], '<button type="submit" class="btn btn-warning" name="remove">Remove</button>']
                     ).draw();
+                    row.remove().draw();
                 }});
-
-
-
-
 
             //$('#trackModal').modal('toggle');
             //alert( 'You clicked on '+data[0]+'\'s row' );
@@ -134,7 +131,7 @@ $coaches = getAll('rwccoach',null,null,null);
 
         $('#coaches_queue tbody').on('click', 'button', function(){
             var coachData = table2.row( $(this).parents('tr') ).data();
-            var row = table2.row( $(this).parents('tr') );
+            var row2 = table2.row( $(this).parents('tr') );
 
 
             $.ajax({
@@ -143,7 +140,7 @@ $coaches = getAll('rwccoach',null,null,null);
                 data: {coach_id:coachData[0], table: "rwccoachteachtrack", track_section_id: track_sectionId, trackId: trackId },
                 success: function (data) {
                     console.log("testing");
-                    row.remove().draw();
+                    row2.remove().draw();
                 }
             })
 
