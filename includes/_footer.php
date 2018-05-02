@@ -21,6 +21,17 @@
 <!-- Custom Validation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $(function() {
+            $('.nospace').on('keypress', function(e) {
+                if (e.which == 32)
+                    return false;
+            });
+        });
+    })
+</script>
+
 </body>
 
 </html>

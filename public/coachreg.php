@@ -97,7 +97,7 @@ include '../includes/_headers.php';
 
                                     <div class="form-group">
                                         <label for="uName">User Name</label>
-                                        <input type="text" class="form-control" id="uName" name="uName" required
+                                        <input type="text" class="form-control nospace" id="uName" name="uName" required
                                                data-minlength="4"
                                                data-error="User Name required with Minimum of 4 Characters">
                                         <div class="help-block with-errors"></div>

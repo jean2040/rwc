@@ -4,7 +4,9 @@
  * User: jeanp
  * Date: 4/26/2018
  * Time: 9:46 PM
+ * This file will delete students or coaches. the reuqest code from each are stores @ coaches and student modals
  */
+
 
 include '../connection.php';
 include '../dbSelect.php';
