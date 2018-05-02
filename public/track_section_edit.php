@@ -167,6 +167,7 @@ if (isset($_POST["id"])){
 
                                     <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
@@ -180,14 +181,11 @@ if (isset($_POST["id"])){
                                         ?>
 
                                         <tr>
+                                            <td><?php echo $student['StudentID']; ?></td>
                                             <td><?php echo $student['Firstname'] ?></td>
                                             <td class="sorting_1"><?php echo $student['Lastname'] ?></td>
                                             <td><?php echo $student['Email'] ?></td>
-                                            <td> <form method="post" action="studentEdit.php">
-                                                    <input type="submit" class="btn btn-warning" name="action" value="Edit">
-                                                    <input type="hidden" name="id" value="<?php echo $student['StudentID']; ?>"/>
-
-                                                </form></td>
+                                            <td> <button type="submit" class="btn btn-warning" id="removeStudent">Remove</button></td>
 
                                         </tr>
 

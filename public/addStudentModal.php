@@ -67,6 +67,10 @@ $students = getAll('students',null,null,null);
 
 <script>
     $(document).ready(function() {
+
+        var track_sectionId = $('#sID').val(); //This is the Track Section Section ID to store in the rwcteachtrack table
+        var trackId = $('#trackID').val(); //This is the Track ID needed to pull info from track table
+
         var table = $('#t_students').DataTable({
             responsive: true,
             "scrollY":        "200px",
@@ -108,6 +112,23 @@ $students = getAll('students',null,null,null);
                     ).draw();
                 }});
         } );
+
+        $('#students_queue tbody').on('click', 'button', function(){
+            var studentData = table2.row( $(this).parents('tr') ).data();
+            var row = table2.row( $(this).parents('tr') );
+
+
+            $.ajax({
+                type: "POST",
+                url: "../php/ajax/remove.php",
+                data: {student_id:studentData[0], table: "studenttaketrack", track_section_id: track_sectionId, trackId: trackId },
+                success: function (data) {
+                    //console.log("testing2");
+                    row.remove().draw();
+                }
+            })
+
+        })
 
     });
 </script>

@@ -9,12 +9,19 @@
 include '../connection.php';
 include '../dbSelect.php';
 $table = $_POST['table'];
+if (isset($_POST['coach_id'])){
+    $id = $_POST['coach_id'];
+    $field = "CoachID";
+}else{
+    $id = $_POST['student_id'];
+    $field = "StudentID";
+}
 $coach_id = $_POST['coach_id'];
 $track_section_id = $_POST['track_section_id'];
 $trackID = $_POST['trackId'];
 
 RemoveById($table, array(
-    "CoachID" => $coach_id,
+    $field => $id,
     "TrackSectionID" => $track_section_id,
     "TrackID" => $trackID,
     ));
