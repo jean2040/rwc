@@ -34,8 +34,8 @@ include '../php/sessionCheck.php';
 
                     <?php
                     //here we check that the required values have been set in the post
-                    $form = checkFormParams(array("uName", "uPass", "fName", "lName"));
-                    if($form["cnt"] == 4){
+                    $form = checkFormParams(array("fName", "lName"));
+                    if($form["cnt"] == 2){
                         // verify if the user does not exists
                         $result = getById("logininfo", "UserName", $form['uName']);
                         // if the user exists send error

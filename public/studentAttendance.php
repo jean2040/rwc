@@ -34,7 +34,7 @@ if (isset($_POST['date'])){
 
 // get students data from db
 
-$my_students = getAll2(array('studentattendance.*','students.Firstname', 'students.Lastname'),'studentattendance' ,'students','StudentID',array('TrackSectionID'=> $TrackSectionID, 'Date' => $date),null,null);
+$my_students = getAll2(array('studentattendance.*','students.Firstname', 'students.Lastname'),'studentattendance' ,'students','StudentID',array('TrackSectionID'=> $TrackSectionID, 'Date' => $date),null,null,null);
 
 ?>
 

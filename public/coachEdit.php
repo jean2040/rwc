@@ -152,7 +152,7 @@ if (isset($coach["LanguageSkill"])){
                                             </label>
                                         </div>
                                         <div>
-                                            <input type="text" name="language[3]" name="other" class="form-control" autocomplete="off" value="<?php print_r($coach['LanguageSkill'][3]); ?>">
+                                            <input type="text" name="language[3]" name="other" class="form-control" autocomplete="off" value="<?php echo print_r($coach['LanguageSkill'][2]); ?>">
                                         </div>
                                     </div>
                                 </div>

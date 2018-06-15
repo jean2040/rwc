@@ -49,8 +49,8 @@ if (isset($_POST["id"])){
 
     //$section = getById('section','SectionID',$_POST["id"]);
     $my_track = getByIdJoin('trackhassection','track','TrackID','TrackSectionID',$t_id);
-    $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackSectionID' => $t_id),null,null);
-    $coaches = getAll2(array('rwccoachteachtrack.*', 'rwccoach.*'),'rwccoachteachtrack','rwccoach','CoachID',array('rwccoachteachtrack.TrackSectionID' => $t_id),null,null);
+    $my_students = getAll2(array('students.*','studenttaketrack.StudentId'), 'students','studenttaketrack','StudentID',array('studenttaketrack.TrackSectionID' => $t_id),null,null,null);
+    $coaches = getAll2(array('rwccoachteachtrack.*', 'rwccoach.*'),'rwccoachteachtrack','rwccoach','CoachID',array('rwccoachteachtrack.TrackSectionID' => $t_id),null,null,null);
 }
 
 ?>

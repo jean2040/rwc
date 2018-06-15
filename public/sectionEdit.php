@@ -48,7 +48,7 @@ if (isset($_POST["id"])){
 
     $section = getById('section','SectionID',$_POST["id"]);
     $tracks = getById('trackhassection','SectionID',$_POST["id"]);
-    $my_tracks = getAll2(array('track.*','trackhassection.TrackSectionID'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id, 'trackhassection.DeleteFlag'=> 'N'),null,null);
+    $my_tracks = getAll2(array('track.*','trackhassection.TrackSectionID'), 'track','trackhassection','TrackID',array('trackhassection.SectionID' => $t_id, 'trackhassection.DeleteFlag'=> 'N'),null,null,null);
 
 }
 

@@ -15,7 +15,7 @@ if (!isset($_SESSION['Role'])) {
 $CoachID = $_SESSION['UserID'];
 // get students data from db
 $Coach = getById('rwccoach','CoachID',$CoachID);
-$my_tracks = getAll2(array('rwccoachteachtrack.TrackSectionID','track.TrackID', 'track.Title'),'rwccoachteachtrack' ,'track','TrackID',array('CoachID'=> $CoachID),null,null);
+$my_tracks = getAll2(array('rwccoachteachtrack.TrackSectionID','track.TrackID', 'track.Title'),'rwccoachteachtrack' ,'track','TrackID',array('CoachID'=> $CoachID),null,null,null);
 
 ?>
 

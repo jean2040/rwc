@@ -127,7 +127,7 @@ $coaches = getAll('rwccoach',null,null,null);
 
             //$('#trackModal').modal('toggle');
             //alert( 'You clicked on '+data[0]+'\'s row' );
-        } );
+        });
 
         $('#coaches_queue tbody').on('click', 'button', function(){
             var coachData = table2.row( $(this).parents('tr') ).data();
